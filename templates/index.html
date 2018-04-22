@@ -13,6 +13,7 @@
 <!-- css files -->
 <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet"/>
 
 <!-- /css files -->
 <body>
@@ -24,10 +25,20 @@
 			<h2 class="txt-w3_agile">Just Cut it out </h2>
 			
 			<div class="sub-form-wthree">
-				<form action="#" method="post">
-					<input type="url" name="url" size="30" required="" placeholder="Place the URL here">
+				<form action="#" method="post" id="shorten">
+					{% csrf_token %}
+					<input type="url" name="url" size="30" id="url" required="" placeholder="Place the URL here">
 					<button class="btn1"><span class="fa fa-cut" aria-hidden="true"></span></button>
 				</form>
+				<br>
+				
+				
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<strong id="url_show"> </strong>
+				</div>
+				
+				
 			</div>		
 			<div class="agile_social_banner">
 				<ul class="social_list">
@@ -43,5 +54,30 @@
 		<p> &copy; 2018 All Rights Reserved</p>
 	</div>
 	</div>
+
+
+
+
+	<!-- Latest compiled and minified JS -->
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+	<script>
+
+		$('#shorten').on('submit',function(event){
+			event.preventDefault();
+			var url = $('#url').val()
+			$.post('short/',{url:url})
+			.done(function(response){
+				//success
+				$('#url_show').html('<a href="' + response + '" target="_blank">' + response + '</a>');
+
+			})
+			.fail(function(){
+				//failed
+				console.log('failed');
+			});
+		})
+	</script>
 </body>
 </html>

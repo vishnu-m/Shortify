@@ -20,6 +20,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,"templates")
 PRODUCTION_HOST = 'kutt.fossgect.club'
 DB_USER = 'root'
 DB_PASS = 'root'
+URL_HASH_SIZE = 8
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -29,7 +30,7 @@ SECRET_KEY = 'k+e(-c(o(vl^^t*_siup0_p+s9jk4z4-t+1-+0tg12*kp%55&^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-PRODUCTION_MODE = True
+PRODUCTION_MODE = False
 
 
 CURRRENT_HOST = None

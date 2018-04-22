@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+from kutt import settings
 from shortify import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
+    path('short/',views.short),
+    re_path(r'^.*/$',views.get_url),
 ]
