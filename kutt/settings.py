@@ -37,7 +37,7 @@ PRODUCTION_MODE = True
 CURRRENT_HOST = None
 
 if PRODUCTION_MODE:
-    DB_HOST = ' srv-captain--mysql'
+    DB_HOST = 'srv-captain--mysql'
     CURRRENT_HOST = PRODUCTION_HOST
     ALLOWED_HOSTS = [PRODUCTION_HOST]
 else:
