@@ -656,3 +656,13 @@ a.social_vimeo:hover {
         width: 18%;
     }
 }
+
+#descr{
+    font-size: 1.7em;
+    color: white;
+    position:absolute;
+    left:0px;
+    top:450px;
+    width:14em;
+    height: 5em;
+}
