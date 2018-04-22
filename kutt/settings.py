@@ -14,8 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+TEMPLATES_DIR = os.path.join(BASE_DIR,"templates")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -28,7 +27,7 @@ DEBUG = True
 
 CURRRENT_HOST = '127.0.0.1'
 
-ALLOWED_HOSTS = [CURRRENT_HOST]
+ALLOWED_HOSTS = [CURRRENT_HOST,]
 
 
 # Application definition
@@ -58,7 +57,11 @@ ROOT_URLCONF = 'kutt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': ['templates'],
+=======
+        'DIRS': [TEMPLATES_DIR,],
+>>>>>>> 626201de34de1475da039550a4cf6dae24a7df1f
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
