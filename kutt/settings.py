@@ -18,6 +18,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR,"templates")
 PRODUCTION_HOST = 'kutt.fossgect.club'
+DB_HOST = None
 DB_USER = 'root'
 DB_PASS = 'root'
 URL_HASH_SIZE = 8
@@ -36,10 +37,12 @@ PRODUCTION_MODE = True
 CURRRENT_HOST = None
 
 if PRODUCTION_MODE:
+    DB_HOST = ' srv-captain--mysql'
     CURRRENT_HOST = PRODUCTION_HOST
     ALLOWED_HOSTS = [PRODUCTION_HOST]
 else:
     CURRRENT_HOST = '127.0.0.1'
+    DB_HOST = CURRRENT_HOST
     ALLOWED_HOSTS = [CURRRENT_HOST]
 
 
@@ -101,7 +104,7 @@ DATABASES = {
         'NAME': 'new_db',
         'USER': DB_USER,
         'PASSWORD': DB_PASS,
-        'HOST': CURRRENT_HOST,
+        'HOST': DB_HOST,
         'PORT': '',
     }
 }
