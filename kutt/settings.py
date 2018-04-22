@@ -27,7 +27,7 @@ DEBUG = True
 
 CURRRENT_HOST = '127.0.0.1'
 
-ALLOWED_HOSTS = [CURRRENT_HOST,]
+ALLOWED_HOSTS = [CURRRENT_HOST]
 
 
 # Application definition
