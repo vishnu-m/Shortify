@@ -15,7 +15,9 @@ def home(request):
 
 @csrf_exempt
 def short(request):
-    text = None
+    uri = str(request.build_absolute_uri())
+    host = uri.split('/')[2]
+    print(host)
     url = str(request.POST.get('url'))
     
     # prepend http:// to the url if not present
@@ -33,13 +35,13 @@ def short(request):
             row = UserURL.objects.get(url=url)
             if row.user.username == user.username:
                 hash_text = row.hash_text
-                short_url = 'http://' + settings.CURRRENT_HOST + ":8000/" + hash_text
+                short_url = 'http://' + host + "/" + hash_text
                 return HttpResponse(short_url)
     else:
         is_existing = AnonymousURL.objects.filter(url=url).exists()
         if is_existing:
             hash_text = AnonymousURL.objects.get(url=url).hash_text
-            short_url = 'http://' + settings.CURRRENT_HOST + ":8000/" + hash_text
+            short_url = 'http://' + host + "/" + hash_text
             return HttpResponse(short_url)
         
     
@@ -48,7 +50,7 @@ def short(request):
     # create a hash
     hash_text = generate_hash()
 
-    short_url = 'http://' + settings.CURRRENT_HOST + ":8000/" + hash_text
+    short_url = 'http://' + host + "/" + hash_text
 
 
     # add the url to the database
