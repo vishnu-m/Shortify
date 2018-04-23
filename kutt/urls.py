@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from django.conf.urls.static import static
 from kutt import settings
 from shortify import views
 
@@ -24,4 +25,4 @@ urlpatterns = [
     path('',views.home),
     path('short/',views.short),
     re_path(r'^.*/$',views.get_url),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

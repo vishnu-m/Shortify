@@ -150,5 +150,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = [
-    'static',
+    os.path.join(BASE_DIR, "static"),
 ]
