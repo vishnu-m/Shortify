@@ -5,7 +5,6 @@
 }
 
 .brand {
-  position: absolute;
   padding-left: 20px;
   float: left;
   line-height: 8vh;
@@ -72,22 +71,24 @@ nav ul li ul li a {
 /* Mobile navigation */
 .nav-mobile {
   display: none;
-  position: absolute;
-  right: 5vh;
-  bottom: 95vh;
   background: none;
-  height: 8vh;
+  /* height: 8vh; */
   width: 8vh;
 }
 
 @media only screen and (max-width: 798px) {
+  .brand{
+    float: right;
+    padding: 1vh 5vw;
+    height: fit-content;
+  }
   .nav-mobile {
     display: block;
   }
 
   nav {
     width: 100%;
-    padding: 8vh 0 3vh;
+    padding: 0 0 3vh;
   }
   nav ul {
     display: none;
