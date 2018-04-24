@@ -258,6 +258,7 @@ a {
 .container {
     width: 50%;
     margin: auto;
+    max-width: 800px;
     padding: 3.3em 0 0;
 }
 
