@@ -730,8 +730,16 @@ a.social_vimeo:hover {
     color:#fff;
 }
 
+.type{
+    color: #ffffff;
+    font-size: 5vh;
+}
+
 
 @media only screen and (max-width: 798px) {
+    body{
+        height: 100%;
+    }
     .btn1{
         display: block;
         margin: 0 35vw;
@@ -739,5 +747,8 @@ a.social_vimeo:hover {
     #url{
         width: 90vw;
         margin: 2vh 0;
+    }
+    .type{
+        font-size: 2.5vh;
     }
 }
