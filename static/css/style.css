@@ -738,7 +738,7 @@ a.social_vimeo:hover {
 
 @media only screen and (max-width: 798px) {
     body{
-        height: 100%;
+        height: 100vh;
     }
     .btn1{
         display: block;
