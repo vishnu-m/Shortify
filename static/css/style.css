@@ -1,10 +1,4 @@
-/*--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
-
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Cabin|Hammersmith+One|Prompt');
 
 /*--- reset code ---*/
 
@@ -681,4 +675,69 @@ a.social_vimeo:hover {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+
+.header{
+    font-family:'Hammersmith One', sans-serif;
+    color: #ffffff;
+    font-size: 10vh;
+}
+
+.header-quarter{
+    font-size: 3vh;
+}
+
+.header-regular{
+    font-style: normal;
+    font-weight: normal;
+}
+
+.title{
+    font-family: 'Prompt', sans-serif;
+}
+
+
+.title-full{
+    font-size: 8vh;
+}
+
+.title-white{
+    color:#fff;
+}
+
+.fixed-bottom{
+    position: absolute;
+    bottom:0vh;
+    left:0vh;
+}
+
+.center-align{
+    text-align: center;
+}
+.footer{
+    width:100%;
+}
+
+#url_show{
+    display: none;
+    /* background: #fff; */
+    padding: 3vh 3vh;
+    color: #000 !important;
+}
+
+#url_show a{
+    color:#fff;
+}
+
+
+@media only screen and (max-width: 798px) {
+    .btn1{
+        display: block;
+        margin: 0 35vw;
+    }
+    #url{
+        width: 90vw;
+        margin: 2vh 0;
+    }
 }
