@@ -17,12 +17,14 @@ def home(request):
 def short(request):
     uri = str(request.build_absolute_uri())
     host = uri.split('/')[2]
-    print(host)
+    
     url = str(request.POST.get('url'))
     
+    print(url)
+
     # prepend http:// to the url if not present
-    if 'http://' not in url and 'https://' not in url:
-        url = 'http://' + url
+    # if 'http://' not in url and 'https://' not in url:
+    #     url = 'http://' + url
 
     # get the user
     user = request.user
