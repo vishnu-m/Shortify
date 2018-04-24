@@ -21,7 +21,7 @@ def short(request):
     url = str(request.POST.get('url'))
     
     # prepend http:// to the url if not present
-    if 'http://' not in url or 'https://' not in url:
+    if 'http://' not in url and 'https://' not in url:
         url = 'http://' + url
 
     # get the user
