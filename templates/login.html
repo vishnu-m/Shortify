@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block meta-headers %}
+    <meta name="keywords" content="Core Login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+{% endblock %}
+
+{% block css-headers %}
+    <link rel="stylesheet" href="/static/css/login.css" type="text/css" media="all">
+    <link href="//fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400,500,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/font-awesome-login.css" type="text/css" media="all">
+{% endblock %}
+
+{% block script-headers %}
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+{% endblock %}
+
+{% block title-section %}
+    <title>Login</title>
+{% endblock %}
+
+
+{% block body-section %}
+    <h1 class="title-agile text-center">Log in Here</h1>
+        <div class="content-w3ls">
+
+            
+            <div class="agileits-grid">
+                
+                <div class="content-bottom">
+                        <p id="warning_txt" style="text-align:center"></p>
+                    <form action="#" method="post" id="login_form">
+                        {% csrf_token %}
+                        <div class="field_w3ls">
+                            <div class="field-group">
+                                <input name="username" id="username" type="text" value="" placeholder="Username" required>
+                            </div>
+                            <div class="field-group">
+                                <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                        </div>
+                        <div class="wthree-field">
+                            <input id="saveForm" name="saveForm" type="submit" value="Login" />
+                        </div>
+                        <br>    
+                        
+                    </form>
+
+                    <a href="#" style="text-align:center; color:#fff">forgot password?</a>
+                </div>
+                <!-- //content bottom -->
+            </div>
+        </div>
+        <div class="copyright text-center">
+            <p>&copy; 2018  All rights reserved 
+                
+            </p>
+        </div>
+        <!--//copyright-->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="/static/js/login.js"></script>
+        <!-- script for show password -->
+        <script>
+            $(".toggle-password").click(function () {
+
+                $(this).toggleClass("fa-eye fa-eye-slash");
+                var input = $($(this).attr("toggle"));
+                if (input.attr("type") == "password") {
+                    input.attr("type", "text");
+                } else {
+                    input.attr("type", "password");
+                }
+            });
+        </script>
+        <!-- /script for show password -->
+
+{% endblock %}

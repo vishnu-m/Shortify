@@ -25,7 +25,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
     path('short/',views.short),
-    re_path(r'^.*/$',views.get_url),
+    path('signup/',views.signup),
+    path('validate/',views.validate),
+    path('login/',views.login_user),
+    path('logout/',views.logout_user),
+    re_path(r'^.*/$',views.get_url),    # shortened url matching
 ] 
 
 

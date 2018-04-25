@@ -14,6 +14,7 @@ $('#shorten').on('submit',function(event){
     .fail(function(){
         //failed
         console.log('failed');
+        error_on_fetching();
     });
 
     //hide the loader
@@ -27,3 +28,7 @@ function show_url(response){
     $("#url_show").css('display','block');
 }
 
+function error_on_fetching(){
+    $('#url_show').html('Something went wrong');
+    $("#url_show").css('display','block');
+}

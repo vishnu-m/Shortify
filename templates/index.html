@@ -1,55 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Shortify</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Astonish Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- font files -->
-<link href="//fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Niconne|Do+Hyeon" rel="stylesheet">
-<!--<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet"> -->
+{% extends 'base.html' %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- /font files -->
-<!-- css files -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/static/css/nav-bar.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/static/css/typewriter.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+{% block title-headers %}
+    <title>Shortify</title>
+{% endblock %}
 
-<!-- /css files -->
-<body>
-	<div class="w3l-banner-layer">
-			
-			
-  	<section class="navigation">
-		<div class="nav-container">
-		  <div class="brand title">
-			<a href="#!">Cut it</a>
-		  </div>
-		  <nav>
-			<div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-			<ul class="nav-list">
-			  <li>
-				<a href="#!">Sign In</a>
-			  </li>
-			  <li>
-				<a href="#!">Create Account</a>
-			  </li>
-			  <li>
-				<a href="#!">About</a>
-			  </li>
-			  <li>
-				<a href="#!">Contact</a>
-			  </li>
-			</ul>
-		  </nav>
-		</div>
-	</section>
-	<div class="container  text-center">	
+{% block meta-headers %}
+    <meta name="keywords" content="Astonish Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+{% endblock %}
+
+{% block script-headers %}
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+{% endblock %}
+
+{% block css-headers %}
+    <link href="//fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Niconne|Do+Hyeon" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/nav-bar.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/typewriter.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    
+{% endblock %}
+
+{% block body-section %}
+    <div class="w3l-banner-layer"></div>
+    <div class="container  text-center">	
 			<h1 class="title title-full title-white">Just Cut it out </h1>
 			<br>
 			
@@ -87,5 +64,12 @@
 
 	<script src="/static/js/index.js"></script>
 	<script src="/static/js/url_show.js"></script>
-</body>
-</html>
+	
+	<script>
+		$('#link').on('click',function(){
+			$('#toggle').toggle()
+		});
+		
+
+	</script>
+{% endblock %}

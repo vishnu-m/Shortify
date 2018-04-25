@@ -157,3 +157,10 @@ article {
   margin: 0 auto;
   padding: 10px;
 }
+
+
+.user-name {
+  line-height: 8vh;
+  color: #ffffff;
+  padding: 0 2vw 0 0;
+}

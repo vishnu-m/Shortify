@@ -19,3 +19,7 @@ class UserURL(models.Model):
 
     def __str__(self):
         return str(self.user.username) + "  " + str(self.hash_text)
+
+class UserPhoneNumber(models.Model):
+    user = models.OneToOneField(to = User, on_delete = models.CASCADE)
+    phone = models.TextField(max_length=13, blank=False, null=False)
