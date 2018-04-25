@@ -20,10 +20,11 @@
 
 {% block body-section %}
 
+<h2 align="center" style="color:#fff">Create Account</h2>
 <div class="signup-form">	
-        <form action="signin/" method="post" id="signup_form">
+        <form action="signin/" method="post" id="signup_form" style="border-radius:1vh">
             {% csrf_token %}
-            <h2>Create Account</h2>
+            
             <p class="lead" id="warning_txt">It's free and hardly takes more than 30 seconds.</p>
             <div class="form-group">
                 <div class="input-group">
