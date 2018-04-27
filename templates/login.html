@@ -15,7 +15,6 @@
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
-
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
@@ -44,7 +43,7 @@
                             </div>
                             <div class="field-group">
                                 <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
-                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                         </div>
                         <div class="wthree-field">
@@ -70,7 +69,6 @@
         <!-- script for show password -->
         <script>
             $(".toggle-password").click(function () {
-
                 $(this).toggleClass("fa-eye fa-eye-slash");
                 var input = $($(this).attr("toggle"));
                 if (input.attr("type") == "password") {

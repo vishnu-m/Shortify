@@ -506,6 +506,12 @@ input:checked+.slider:before {
     color: #000;
 }
 
+#username{
+    color: black;
+}
+#password{
+    color: black;
+}
 /* //content */
 
 @media (max-width: 1920px) {
