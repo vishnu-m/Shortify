@@ -168,10 +168,6 @@ def signup(request):
     phone = request.POST.get('phone')
     password = request.POST.get('password')
 
-
-    print(lname)
-    print('%s %s %s %s %s %s'%(fname, lname, username, email, phone, password))
-    
     u = User.objects.create_user(first_name = fname, last_name = lname, username = username, email = email, password = password)
     
     if u:
@@ -221,3 +217,33 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('/')
+
+
+@csrf_exempt
+def verify(request):
+    if not request.is_ajax():
+        return render(request, '404.html', {})
+    
+    if request.method != 'POST':
+        return Http404('Not Found')
+
+    hash_text = str(request.POST.get('hash'))
+
+    # get the hostname
+    uri = str(request.build_absolute_uri())
+    host = uri.split('/')[2]
+
+
+    # get all the shortened URLs
+    all_user_urls = [ x.hash_text for x in list(UserURL.objects.all())]
+    all_anon_urls = [ x.hash_text for x in list(AnonymousURL.objects.all())]
+
+    response = {}
+    
+    if hash_text not in all_user_urls and hash_text not in all_anon_urls:
+        # requested URL available
+        response['status'] = '200'
+    else:
+        response['status'] = '404'
+    
+    return JsonResponse(response)

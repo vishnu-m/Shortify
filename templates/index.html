@@ -18,15 +18,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/static/css/nav-bar.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/static/css/typewriter.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/nav-bar.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
     
 {% endblock %}
 
 {% block body-section %}
     <div class="w3l-banner-layer"></div>
-    <div class="container  text-center">	
+    <div class="container  text-center">
+		<div id="shorten_section">
 			<h1 class="title title-full title-white">Just Cut it out </h1>
 			<br>
 			
@@ -36,16 +36,54 @@
 					<input type="url" name="url" size="30" id="url" required="" placeholder="Place the URL here">
 					<button class="btn1" id="cut_btn"><span class="fa fa-cut" aria-hidden="true"></span></button>
 				</form>	
+				
 				<br>	
 			</div>	
-				
+		</div>
+		<div class="center-align">
+				<div class="title title-white" id="url_show"></div>
+		</div>	
+		{% if user.is_authenticated %}
+			<div class="line-w3l" id="or_line"><span class="w3l-line"></span>OR<span class="w3l-line"></span></div>
+			
+			<button type="button" class="btn btn-default custom-link-btn" id="customize_btn">Create Your Own Link</button>
+			
+		{% endif %}
+
+		<div id="customiz_section">
+			
+			<h1 class="title title-half title-white">Create Your Own URL</h1>
+			<br>
+			<div class="sub-form-wthree">
+					<form action="#" method="post" id="shorten">
+						{% csrf_token %}
+						<input type="url" name="url" size="30" id="url_custom" required="" placeholder="Place the URL here">
+					</form>	
+					
+					<br>	
+			</div>
+			<div class="shorten-custom-url">
+				<font id="site_address" class="site_addr"></font>
+				<div class="input-group" style="display:inline">
+					<input type="text" size="32" id="url_shortened" placeholder="Your Custom Shortened URL Goes Here">
+					<div class="input-group-addon loader-div">
+						<img src="/static/images/done.png" class="loader-icon" id="done_img" />
+						<img src="/static/images/wrong.png" class="loader-icon" id="fail_img" />
+						<img src="/static/images/loading.gif" class="loader-icon" id="loader"/>
+					</div>
+				</div>
+				<label id="status"></label> 
+			</div>
+			
+			<button type="button" class="btn btn-default custom-link-btn" id="back_to_home_btn">Back to home</button>
+			
+			
+		</div>
 	</div>
-	<div class="center-align">
-		<div class="title title-white" id="url_show"></div>
-	</div>
+	
 
 	<br><br>
-	<div class="center-align">
+	<div class="center-align" id="tag_line">
 			<div class="type">Efficiently manage links, set custom domains and view statistics</div>
 	</div>
 
@@ -64,5 +102,6 @@
 
 	
 	<script src="/static/js/url_show.js"></script>
+	<script src="/static/js/url_customize.js"></script>
 	
 {% endblock %}

@@ -29,6 +29,7 @@ urlpatterns = [
     path('validate/',views.validate),
     path('login/',views.login_user),
     path('logout/',views.logout_user),
+    path('verify/', views.verify),
     re_path(r'^.*/$',views.get_url),    # shortened url matching
 ] 
 
