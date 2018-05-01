@@ -224,8 +224,11 @@ def verify(request):
     if not request.is_ajax():
         return render(request, '404.html', {})
     
-    if request.method != 'POST':
+    if request.method != 'POST' :
         return Http404('Not Found')
+    
+    if not request.user.is_authenticated:
+        return Http404('Not found')
 
     hash_text = str(request.POST.get('hash'))
 
@@ -247,3 +250,38 @@ def verify(request):
         response['status'] = '404'
     
     return JsonResponse(response)
+
+@csrf_exempt
+def custom_shorten(request):
+    if not request.is_ajax:
+        return render(request, '404.html', {})
+    
+    if request.method != 'POST':
+        return Http404('not found')
+    
+    if not request.user.is_authenticated:
+        return Http404('not found')
+    
+    url = request.POST.get('url')
+    hash_text = request.POST.get('tag')
+
+    response = {}
+    # check whether the hash text exists or not
+    if UserURL.objects.filter(hash_text = hash_text).exists() or AnonymousURL.objects.filter(hash_text = hash_text).exists():
+        response['status'] = 404
+        return JsonResponse(response)
+
+    u = UserURL.objects.create(user = request.user, url = url, hash_text = hash_text, date_added = datetime.now())
+    if u:
+        # get the hostname
+        uri = str(request.build_absolute_uri())
+        http = uri.split('/')[0]
+        host = uri.split('/')[2]
+
+        response['status'] = 200
+        response['text'] = http + '//' + host + '/' + hash_text
+
+        return JsonResponse(response)
+    else:
+        response['status'] = 404
+        return JsonResponse(response)

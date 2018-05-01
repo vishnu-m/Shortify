@@ -30,6 +30,10 @@ urlpatterns = [
     path('login/',views.login_user),
     path('logout/',views.logout_user),
     path('verify/', views.verify),
+    path('custom_shorten/',views.custom_shorten),
+    
+
+    # keep this section in the bottom in order to prevent overriding the shortened URL and pre defined URL
     re_path(r'^.*/$',views.get_url),    # shortened url matching
 ] 
 
