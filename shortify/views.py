@@ -20,6 +20,9 @@ def short(request):
     uri = str(request.build_absolute_uri())
     host = uri.split('/')[2]
     
+    if request.method != 'POST':
+        return HttpResponse('not found')
+        
     url = str(request.POST.get('url'))
 
     # prepend http:// to the url if not present
@@ -262,13 +265,19 @@ def custom_shorten(request):
     if not request.user.is_authenticated:
         return Http404('not found')
     
-    url = request.POST.get('url')
-    hash_text = request.POST.get('tag')
+    url = str(request.POST.get('url'))
+    hash_text = str(request.POST.get('tag'))
+
+    if len(url) == 0 or len(hash_text) == 0:
+        return Http404('invalid url or tag')
+
+    print('%s %s'%(url,hash_text))
 
     response = {}
     # check whether the hash text exists or not
     if UserURL.objects.filter(hash_text = hash_text).exists() or AnonymousURL.objects.filter(hash_text = hash_text).exists():
         response['status'] = 404
+        response['text'] = 'URL exists'
         return JsonResponse(response)
 
     u = UserURL.objects.create(user = request.user, url = url, hash_text = hash_text, date_added = datetime.now())

@@ -362,7 +362,7 @@ span.bar:before {
     font-size: 1.1em;
     letter-spacing: 1px;
     margin: 35px 0;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .footer p {
@@ -715,6 +715,11 @@ a.social_vimeo:hover {
     color:#fff;
 }
 
+a.title-white p :hover{
+    color: #fff !important;
+    text-decoration: dotted;
+}
+
 .fixed-bottom{
     position: absolute;
     top:90vh;
@@ -738,6 +743,7 @@ a.social_vimeo:hover {
 #url_show a{
     color:#fff;
 }
+
 
 .type{
     color: #ffffff;
@@ -788,7 +794,7 @@ a.social_vimeo:hover {
     font-size: 1em;
     color: #fff !important;
     padding: 1vh 0 0 0;
-    margin: 0 0 2vh 0;
+    margin: 0 0 5vh 0;
     /* width: fit-content; */
     border: none !important;
     -webkit-appearance: none;
@@ -832,6 +838,13 @@ a.social_vimeo:hover {
     .type{
         font-size: 2.5vh;
     }
+    #url_custom{
+        width: 80vw;
+    }
 }
 
+#warning_txt{
+    width: 100%;
+    text-align: center;
+}
 

@@ -17,8 +17,8 @@
     <link href="//fonts.googleapis.com/css?family=Niconne|Do+Hyeon" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="/static/css/nav-bar.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+	<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />    
 {% endblock %}
 
@@ -53,26 +53,25 @@
 			
 			<h1 class="title title-half title-white">Create Your Own URL</h1>
 			<br>
-			<div class="sub-form-wthree">
-					{% comment %} <form id="shorten"> {% endcomment %}
-						{% comment %} {% csrf_token %} {% endcomment %}
-						<input type="url" name="url" size="30" id="url_custom" required="" placeholder="Place the URL here">
-						<button class="btn1" id="custom_cut_btn"><span class="fa fa-cut" aria-hidden="true"></span></button>
-					{% comment %} </form>	 {% endcomment %}
+			<div class="sub-form-wthree" style="margin: 0 0 5vh 0">
+					<form id="shorten">
+						{% csrf_token %}
+						<input type="url" name="url" id="url_custom" required="" placeholder="Place the URL here">
+					</form>	
 					
 					<br>	
 			</div>
 			<div class="shorten-custom-url" id="shorten_custom_url">
 				<font id="site_address" class="site_addr"></font>
 				<div class="input-group" style="display:inline">
-					<input type="text" size="32" id="url_shortened" placeholder="Your Custom Shortened URL Goes Here">
+					<input type="text" id="url_shortened" placeholder="Custome Name for URL">
 					<div class="input-group-addon loader-div">
 						<img src="/static/images/done.png" class="loader-icon" id="done_img" />
 						<img src="/static/images/wrong.png" class="loader-icon" id="fail_img" />
 						<img src="/static/images/loading.gif" class="loader-icon" id="loader"/>
 					</div>
 				</div>
-				<label id="status"></label> 
+				
 			</div>
 			
 			
@@ -80,9 +79,11 @@
 			
 			<p class="title title-white" id="warning_txt"></p>
 
-			<button type="button" class="btn btn-default custom-link-btn" id="back_to_home_btn">Back to home</button>
-			
-			
+			<div style="margin-top:2vh">
+				<button type="button" class="btn btn-default custom-link-btn" id="back_to_home_btn">Back to home</button>
+				<button type="button" class="btn btn-default custom-link-btn" id="reset_btn">Reset</button>
+				<button type="button" class="btn btn-default custom-link-btn" id="custom_cut_btn">Done</button>
+			</div>
 		</div>
 	</div>
 	
@@ -104,7 +105,6 @@
 	<script src="https://code.jquery.com/jquery.min.js"></script>
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 	
 	<script src="/static/js/url_show.js"></script>
 	<script src="/static/js/url_customize.js"></script>
@@ -114,6 +114,7 @@
 			$('#loader').hide();
 			$('#done_img').hide();
 			$('#fail_img').hide();
+			hide_warning();
 	</script>
 	<noscript>This site needs javascript support to run</noscript>
 	
