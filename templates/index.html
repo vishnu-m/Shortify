@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title-headers %}
+    <title>Shortify</title>
+{% endblock %}
+
+{% block meta-headers %}
+    <meta name="keywords" content="Astonish Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+{% endblock %}
+
+{% block script-headers %}
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+{% endblock %}
+
+{% block css-headers %}
+    <link href="//fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Niconne|Do+Hyeon" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/nav-bar.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/typewriter.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    
+{% endblock %}
+
+{% block body-section %}
+    <div class="w3l-banner-layer"></div>
+    <div class="container  text-center">	
+			<h1 class="title title-full title-white">Just Cut it out </h1>
+			<br>
+			
+			<div class="sub-form-wthree" id="contain">
+				<form action="#" method="post" id="shorten">
+					{% csrf_token %}
+					<input type="url" name="url" size="30" id="url" required="" placeholder="Place the URL here">
+					<button class="btn1" id="cut_btn"><span class="fa fa-cut" aria-hidden="true"></span></button>
+				</form>	
+				<br>	
+			</div>	
+				
+	</div>
+	<div class="center-align">
+		<div class="title title-white" id="url_show"></div>
+	</div>
+
+	<br><br>
+	<div class="center-align">
+			<div class="type">Efficiently manage links, set custom domains and view statistics</div>
+	</div>
+
+	<div class="footer fixed-bottom">
+		<p> &copy; 2018 All Rights Reserved</p>
+	</div>
+	</div>
+
+
+
+
+	<!-- Latest compiled and minified JS -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	
+	<script src="/static/js/url_show.js"></script>
+	
+{% endblock %}

@@ -1,0 +1,87 @@
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Profile</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link href="/static/css/main.css" rel="stylesheet" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link href="/static/css/noscript.css" rel="stylesheet" /></noscript>
+    <!-- Scripts -->
+			<script src="/static/js/jquery.min.js"></script>
+			<script src="/static/js/skel.min.js"></script>
+			<script src="/static/js/util.js"></script>
+			<script src="/static/js/main.js"></script>
+
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-diamond"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>{{ user.username }}</h1>
+								<p>Profile</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#savedurls">Saved_Urls</a></li>
+
+                <li><a href="#about">About</a></li>
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="savedurls">
+								<h2 class="major">Intro</h2>
+								<!--<span class="image main"><img src="images/pic01.jpg" alt="" /></span>-->
+								<p>The urls go here!</p>
+
+							</article>
+
+
+
+						<!-- About -->
+							<article id="about">
+								<h2 class="major">About</h2>
+								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
+								<p><center><bold>{{ user.username }}</bold></center></p>
+                <p>Phone : {{ user.phone }}</p>
+                <p>Email : {{ user.email }}</p>
+
+
+
+							</article>
+
+
+			
+
+					</div>
+
+				<!-- Footer -->
+        <div class="footer fixed-bottom">
+          <p> &copy; 2018 All Rights Reserved</p>
+        </div>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+
+	</body>
+</html>

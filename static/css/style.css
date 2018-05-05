@@ -1,0 +1,755 @@
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Cabin|Hammersmith+One|Prompt');
+
+/*--- reset code ---*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+nav ul,
+nav li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ol,
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* start editing from here */
+
+a {
+    text-decoration: none;
+}
+
+.txt-rt {
+    text-align: right;
+}
+
+
+/* text align right */
+
+.txt-lt {
+    text-align: left;
+}
+
+
+/* text align left */
+
+.txt-center {
+    text-align: center;
+}
+
+
+/* text align center */
+
+.float-rt {
+    float: right;
+}
+
+
+/* float right */
+
+.float-lt {
+    float: left;
+}
+
+
+/* float left */
+
+.clear {
+    clear: both;
+}
+
+
+/* clear float */
+
+.pos-relative {
+    position: relative;
+}
+
+
+/* Position Relative */
+
+.pos-absolute {
+    position: absolute;
+}
+
+
+/* Position Absolute */
+
+.vertical-base {
+    vertical-align: baseline;
+}
+
+
+/* vertical align baseline */
+
+.vertical-top {
+    vertical-align: top;
+}
+
+
+/* vertical align top */
+
+nav.vertical ul li {
+    display: block;
+}
+
+
+/* vertical menu */
+
+nav.horizontal ul li {
+    display: inline-block;
+}
+
+
+/* horizontal menu */
+
+img {
+    max-width: 100%;
+}
+
+
+/*--- end reset code ---*/
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    background: url('../images/home_bg.jpg') no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+/* Header */
+
+a {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    text-decoration: none;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    max-width: 800px;
+    padding: 3.3em 0 0;
+}
+
+.agileinfo-logo h1 a {
+    color: #fff;
+    display: inline-block;
+    font-size: 2.8em;
+    font-family: 'Niconne', cursive;
+    text-transform: capitalize;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.agileinfo-logo h1 span {
+    color: #fff;
+    font-size: 1.2em;
+    display: block;
+    background: #89c529;
+    width: 80px;
+    line-height: 1.5;
+    padding: 4px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+h2.txt-w3_agile {
+    font-size: 4em;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin: 0.8em 0;
+}
+
+span.bar {
+    background: #88adf1;
+    display: block;
+    position: relative;
+    width: 65%;
+    margin: 0 auto;
+    border-radius: 10px;
+    height: 10px;
+}
+
+span.bar:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0;
+    width: 30%;
+    background: #fff;
+    height: 10px;
+    border-radius: 0 10px 10px 0;
+}
+
+.sub-form-wthree input[type="url"] {
+    padding: 0.8em;
+    border: solid 1px #FFFFFF;
+    width: 55%;
+    margin-right: 10px;
+    font-size: 1em;
+    color: #000000;
+    outline: none;
+    display: inline-block;
+    background: #ffffff;
+    border-radius: 20px;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.sub-form-wthree button {
+    color: #ffffff;
+    padding: 0.8em;
+    width: 8%;
+    border-radius: 19px;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    background: #000000;
+    border: solid 1px #000000;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+
+.sub-form-wthree button:hover {
+    color: #94bf36;
+    background: transparent;
+    border: solid 1px #ffffff;
+}
+
+.container p {
+    color: #fff;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    margin: 35px 0;
+    text-transform: capitalize;
+}
+
+.footer p {
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.footer p a {
+    color: #fff;
+}
+
+.footer p a:hover {
+    color: #000;
+}
+
+
+/*-- social-icon --*/
+
+ul.social_list {
+    margin: 3em 0;
+}
+
+.social_list li {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+.social_list li a {
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    font-size: 0.95em;
+    width: 25px;
+    line-height: 1.8em;
+    padding: 5px;
+    height: 25px;
+    border: 1px solid transparent;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;
+    transition: .5s all;
+}
+
+a.social_facebook {
+    background: #3b5998;
+}
+
+a.social_facebook:hover {
+    border: 1px solid #3b5998;
+    color: #3b5998;
+}
+
+a.social_twitter {
+    background: #1da1f2;
+}
+
+a.social_twitter:hover {
+    color: #1da1f2;
+    border: 1px solid #1da1f2;
+    
+}
+
+a.social_dribble {
+    background: #ea4c89;
+}
+
+a.social_dribble:hover {
+    color: #ea4c89;
+    border: 1px solid #ea4c89;
+}
+
+a.social_vimeo {
+    background: #1ab7ea;
+}
+
+a.social_vimeo:hover {
+    color: #1ab7ea;
+    border: 1px solid #1ab7ea;
+}
+
+.social_list li a:hover {
+    background: transparent;
+}
+
+
+/*-- //social icons --*/
+@media screen and (max-width: 1440px) {
+    h2.txt-w3_agile {
+        font-size: 3.8em;
+    }
+    .footer p {
+        padding-bottom: 2em;
+    }
+}
+@media screen and (max-width: 1366px) {
+    .container {
+        width: 51%;
+    }
+}
+@media screen and (max-width: 1280px) {
+    .container {
+        width: 54%;
+    }
+}
+@media screen and (max-width: 1080px) {
+    .container {
+        width: 65%;
+    }
+    h2.txt-w3_agile {
+        font-size: 3.6em;
+    }
+    .sub-form-wthree button {
+        width: 10%;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .sub-form-wthree input[type="email"] {
+        width: 38%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    h2.txt-w3_agile {
+        font-size: 3.4em;
+    }
+}
+
+
+@media screen and (max-width: 991px) {
+    .agileinfo-logo h1 span {
+        font-size: 1em;
+        width: 75px;
+        line-height: 1.7;
+        height: 75px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    h2.txt-w3_agile {
+        font-size: 3.2em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    h2.txt-w3_agile {
+        font-size: 3.1em;
+    }
+    .container {
+        width: 72%;
+    }
+    .sub-form-wthree input[type="email"] {
+        width: 42%;
+    }
+}
+@media screen and (max-width: 768px) {
+    h2.txt-w3_agile {
+        font-size: 2.8em;
+    }
+    .sub-form-wthree button {
+        width: 12%;
+    }
+    .sub-form-wthree input[type="email"] {
+        width: 44%;
+    }
+}
+@media screen and (max-width: 667px) {
+    .container {
+        width: 78%;
+    }
+    h2.txt-w3_agile {
+        font-size: 2.6em;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .agileinfo-logo h1 span {
+        font-size: 0.95em;
+        width: 65px;
+        line-height: 1.6;
+        height: 65px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    h2.txt-w3_agile {
+        font-size: 2.5em;
+    }
+    .sub-form-wthree input[type="email"] {
+        width: 47%;
+    }
+    .sub-form-wthree button {
+        width: 14%;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    h2.txt-w3_agile {
+        font-size: 2.3em;
+    }
+    .social_list li {
+        margin-left: 0.8em;
+    }
+    .container p {
+        margin: 30px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h2.txt-w3_agile {
+        font-size: 2.2em;
+    }
+    .container {
+        width: 88%;
+    }
+    .sub-form-wthree input[type="email"] {
+        width: 52%;
+    }
+    .footer p {
+        padding: 0 2em 2em;
+        line-height: 1.7;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    h2.txt-w3_agile {
+        font-size: 2em;
+    }
+    .container {
+        width: 90%;
+    }
+    span.bar {
+        width: 70%;
+    }
+    .sub-form-wthree input[type="email"] {
+        width: 59%;
+    }
+    ul.social_list {
+        margin: 2em 0;
+    }
+    .sub-form-wthree button {
+        width: 16%;
+    }
+}
+
+@media screen and (max-width: 384px) {
+   
+    h2.txt-w3_agile {
+        font-size: 1.8em;
+        line-height: 1.4;
+    }
+    .container {
+        padding: 3em 0 0;
+    }
+    .sub-form-wthree input[type="email"] {
+        margin-right:5px;
+    }
+    .container p {
+      font-size: 1em;
+    }
+}
+@media screen and (max-width: 375px) {
+    .agileinfo-logo h1 span {
+        font-size: 0.85em;
+        width: 60px;
+        line-height: 1.6;
+        height: 60px;
+    }
+    h2.txt-w3_agile {
+        font-size: 1.6em;
+    }
+    .container {
+        padding: 2.5em 0 0;
+    }
+}
+@media screen and (max-width: 320px) {
+    h2.txt-w3_agile {
+        font-size: 1.4em;
+    }
+    span.bar {
+        width: 75%;
+    }
+    .sub-form-wthree input[type="email"] {
+        width: 63%;
+    }
+    .sub-form-wthree button {
+        width: 18%;
+    }
+}
+
+#descr{
+    font-size: 1.7em;
+    color: white;
+    position:absolute;
+    left:0px;
+    top:450px;
+    width:14em;
+    height: 5em;
+}
+
+
+.loader {
+    background: none !important;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 1vh !important;
+    height: 1vh !important;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.header{
+    font-family:'Hammersmith One', sans-serif;
+    color: #ffffff;
+    font-size: 10vh;
+}
+
+.header-quarter{
+    font-size: 3vh;
+}
+
+.header-regular{
+    font-style: normal;
+    font-weight: normal;
+}
+
+.title{
+    font-family: 'Prompt', sans-serif;
+}
+
+
+.title-full{
+    font-size: 8vh;
+}
+
+.title-white{
+    color:#fff;
+}
+
+.fixed-bottom{
+    position: absolute;
+    bottom:0vh;
+    left:0vh;
+}
+
+.center-align{
+    text-align: center;
+}
+.footer{
+    width:100%;
+}
+
+#url_show{
+    display: none;
+    /* background: #fff; */
+    padding: 3vh 3vh;
+    color: #000 !important;
+}
+
+#url_show a{
+    color:#fff;
+}
+
+.type{
+    color: #ffffff;
+    font-size: 5vh;
+}
+
+
+@media only screen and (max-width: 798px) {
+    body{
+        height: 100vh;
+    }
+    .btn1{
+        display: block;
+        margin: 0 35vw;
+    }
+    #url{
+        width: 90vw;
+        margin: 2vh 0;
+    }
+    .type{
+        font-size: 2.5vh;
+    }
+}

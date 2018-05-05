@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/static/css/nav-bar.css" rel="stylesheet" type="text/css" media="all" />
+        {% block meta-headers %}
+        {% endblock %}
+        {% block css-headers %}
+        {% endblock %}
+
+        {% block script-headers %}
+        {% endblock %}
+
+        {% block title-section %}
+        {% endblock %}
+        </head>
+
+
+        <body>
+
+
+            <!-- navigation bar -->
+                <section class="navigation">
+                        <div class="nav-container">
+                          <div class="brand title">
+                            <a href="/">Cut it</a>
+                          </div>
+                          <nav>
+                            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                            <ul class="nav-list">
+                            {% if user.is_authenticated %}
+                                <li class="user-name">Welcome {{ user.username }}</li>
+                                <li>
+                                  <a href="/profile">Profile</a>
+                                </li>
+                                
+
+                            {% else %}
+                            <li>
+                                    <a href="/login/">Log In</a>
+                            </li>
+                            <li>
+                                    <a href="/signup/">Create Account</a>
+                            </li>
+                            {% endif %}
+
+                              <li>
+                                <a href="#!">About</a>
+                              </li>
+                              <li>
+                                <a href="#!">Contact</a>
+                              </li>
+                              {% if user.is_authenticated %}
+                              <li>
+                                    <a href="/logout">Log out</a>
+                                  </li>
+                            {% endif %}
+                            </ul>
+                          </nav>
+                        </div>
+                    </section>
+
+        {% block body-section %}
+        {% endblock %}
+
+        <script src="/static/js/index.js"></script>
+
+	    <script>
+            $('#link').on('click',function(){
+                $('#toggle').toggle()
+            });
+
+        </script>
+        </body>
+</html>

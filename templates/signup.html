@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block meta-headers %}
+    <meta name="keywords" content="Create an account to enjoy all our features. It is quiet simple and it takes hardly a minute">
+{% endblock %}
+
+{% block css-headers %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/signin.css" type="text/css">
+{% endblock %}
+
+{% block script-headers %}
+{% endblock %}
+
+{% block title-section %}
+    <title>Create Account</title>
+{% endblock %}
+
+{% block body-section %}
+
+<h2 align="center" style="color:#fff">Create Account</h2>
+<div class="signup-form">	
+        <form action="signin/" method="post" id="signup_form" style="border-radius:1vh">
+            {% csrf_token %}
+            
+            <p class="lead" id="warning_txt">It's free and hardly takes more than 30 seconds.</p>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="first_name" placeholder="First Name" required="required" id="first_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required" id="last_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user-circle-o"></i></span>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required" id="username">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" required="required" id="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    <input type="text" class="form-control" name="phone" placeholder="Phone Number" required="required" id="phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="required"  id="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-lock"></i>
+                        <i class="fa fa-check"></i>
+                    </span>
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required" id="confirm_password">
+                </div>
+            </div>        
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+            </div>
+            <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a>.</p>
+        </form>
+        <div class="text-center">Already have an account? <a href="#" style="color:#fff">Login here</a>.</div>
+    </div> 
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="/static/js/signup.js"></script>
+
+{% endblock %}
