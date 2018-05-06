@@ -19,7 +19,7 @@ from django.urls import path, re_path
 from django.conf.urls.static import static
 from kutt import settings
 from shortify import views
-from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm
+from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +34,7 @@ urlpatterns = [
     re_path(r'^reset-password/$', password_reset, name='reset_password'),
     re_path(r'^reset-password/done/$', password_reset_done, name='password_reset_done'),
     re_path(r'^reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_confirm,name='password_reset_confirm'),
+    re_path(r'^reset-password/complete/$', password_reset_complete, name='password_reset_complete'),
     re_path(r'^.*/$',views.get_url),    # shortened url matching
 ] 
 
