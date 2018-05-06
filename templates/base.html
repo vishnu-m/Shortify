@@ -32,6 +32,9 @@
                             <ul class="nav-list">
                             {% if user.is_authenticated %} 
                                 <li class="user-name">Welcome {{ user.username }}</li>
+                                <li>
+                                      <a href="/statistics/">Statistics</a>
+                                </li>
                             {% else %}
                             <li>
                                     <a href="/login/">Log In</a>
@@ -59,6 +62,10 @@
 
         {% block body-section %}
         {% endblock %}
+
+        <div class="footer fixed-bottom">
+            <p> &copy; 2018 All Rights Reserved</p>
+          </div>
 
         <script src="/static/js/index.js"></script>
 

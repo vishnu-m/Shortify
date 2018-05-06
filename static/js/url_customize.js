@@ -111,6 +111,7 @@ var status = false;
         $('#loader').show();
         
         var tag = $('#url_shortened').val();
+        var url = $('#url_custom').val();
 
         if( tag.length < 4){
             show_warning('The tag should contain atleast 4 characters');
@@ -132,7 +133,7 @@ var status = false;
             return;
 
         // send the request
-        $.post('verify/', {'hash':tag})
+        $.post('verify/', {'hash':tag, 'url':url})
         .done(function(response){
             if( response.status == '200'){
                 // requested URL is available
@@ -141,7 +142,7 @@ var status = false;
                 //show the status
                 $('#fail_img').hide();
                 $('#done_img').show();
-                status = true;
+                window.status = true;
             }
             else{
                 // it is not available
@@ -152,7 +153,7 @@ var status = false;
                 $('#fail_img').show();
 
                 // show warning
-                show_warning('It is already taken');
+                show_warning(response.text);
             }
         })
         .fail(function(){
@@ -186,7 +187,7 @@ var status = false;
         $('#done_img').hide();
         $('#loader').hide();
         $('#fail_img').show();
-        status = false;
+        window.status = false;
     }
 // shown
 
@@ -208,10 +209,16 @@ var status = false;
         console.log('it is submitting');
 
         // if anything is wrong
-        if ( status == false ){
-            show_warning('Invalid Tag');
+        if ( window.status == false || window.status == 'false'){
+            console.log('inside if');
+            show_warning('Invalid Tag or URL');
             return;
         }
+        console.log(status);
+        console.log(window.status);
+        console.log(typeof status);
+        console.log(typeof window.status);
+        
         
         var url = $('#url_custom').val();
 

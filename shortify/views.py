@@ -5,9 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from .models import UserURL,AnonymousURL, UserPhoneNumber
 from datetime import datetime
+from dateutil import tz
 from kutt import settings
 import random
 import string
+from datetime import datetime
 import re
 
 # Create your views here.
@@ -85,12 +87,19 @@ def get_url(request):
     if user.is_authenticated:
         row = UserURL.objects.filter(hash_text= path, user = user)
         if row.exists():
-            return redirect(row[0].url)
+            row = UserURL.objects.get(hash_text= path, user = user)
+            row.no_of_clicks += 1
+            row.save()
+            url = row.url
+            if url.startswith('http://') or url.startswith('https://'):
+                return redirect(url)
+            else:
+                return redirect('http://' + url)
     else:
         row = AnonymousURL.objects.filter(hash_text= path)
         if row.exists():
             return redirect(row[0].url)       
-
+    
     return render(request,'404.html',{})
 
 def generate_hash():
@@ -234,23 +243,36 @@ def verify(request):
         return Http404('Not found')
 
     hash_text = str(request.POST.get('hash'))
+    url = str(request.POST.get('url'))
+
+    if not url.startswith('http:') or not url.startswith('https:'):
+        url = 'http://' + url
 
     # get the hostname
     uri = str(request.build_absolute_uri())
     host = uri.split('/')[2]
 
 
-    # get all the shortened URLs
-    all_user_urls = [ x.hash_text for x in list(UserURL.objects.all())]
-    all_anon_urls = [ x.hash_text for x in list(AnonymousURL.objects.all())]
+    # get hashes of all the shortened URLs
+    all_user_hashes = [ x.hash_text for x in UserURL.objects.all() ]
+    all_anon_hashes = [ x.hash_text for x in AnonymousURL.objects.all() ]
+
+    # get all the URLs which are already shortened by the user
+    all_user_urls = [ x.url for x in UserURL.objects.filter(user = request.user) ]
+
 
     response = {}
     
-    if hash_text not in all_user_urls and hash_text not in all_anon_urls:
+    if hash_text in all_user_hashes + all_anon_hashes :
         # requested URL available
-        response['status'] = '200'
-    else:
         response['status'] = '404'
+        response['text'] = 'Tag already in use'
+    elif url in all_user_urls:
+        hash_text = UserURL.objects.get(user = request.user, url = url).hash_text
+        response['status'] = '404'
+        response['text'] = 'URL already shortened as ' + host + '/' + hash_text
+    else:
+        response['status'] = '200'
     
     return JsonResponse(response)
 
@@ -270,12 +292,20 @@ def custom_shorten(request):
 
     if len(url) == 0 or len(hash_text) == 0:
         return Http404('invalid url or tag')
+    
+    if not url.startswith('http:') or not url.startswith('https:'):
+        url = 'http://' + url
 
     print('%s %s'%(url,hash_text))
 
     response = {}
     # check whether the hash text exists or not
     if UserURL.objects.filter(hash_text = hash_text).exists() or AnonymousURL.objects.filter(hash_text = hash_text).exists():
+        response['status'] = 404
+        response['text'] = 'Tag exists'
+        return JsonResponse(response)
+    
+    if UserURL.objects.filter(url = url).exists() or AnonymousURL.objects.filter(url = url).exists():
         response['status'] = 404
         response['text'] = 'URL exists'
         return JsonResponse(response)
@@ -294,3 +324,50 @@ def custom_shorten(request):
     else:
         response['status'] = 404
         return JsonResponse(response)
+
+
+def statistics(request):
+    if not request.user.is_authenticated:
+        return render(request, '404.html', {})
+    return render(request, 'stati.html',{})
+
+
+def show_stati(request):
+    user = request.user
+
+    # if not ajax return 404 page
+    if not request.is_ajax():
+        print('not ajax')
+        return render(request, '404.html', {})
+
+    # if not authenticated return 404 page
+    if not user.is_authenticated:
+        print('not ajax')
+        return render(request, '404.html', {})
+    
+    # get all urls from UserURLs
+    all_urls = UserURL.objects.filter(user = user).order_by('-date_added')
+    
+    
+    data = []
+    urls = {}
+
+    # get the minified URL statistics
+    for url in all_urls:
+        urls['url'] = url.url
+        urls['hash'] = url.hash_text
+        # convert date from UTC to Asia/Kolkata
+        date = url.date_added
+        UTC = tz.gettz('UTC')
+        IN = tz.gettz('Asia/Kolkata')
+
+        date.replace(tzinfo = UTC)
+        actual_date = date.astimezone(IN)
+
+        urls['date_added'] = datetime.strftime(actual_date, '%a %d %b %Y %I:%M %p')
+        urls['clicks'] = url.no_of_clicks
+        data.append(urls)
+        urls = {}
+    print(data)
+    print(all_urls)
+    return JsonResponse({'data':data})

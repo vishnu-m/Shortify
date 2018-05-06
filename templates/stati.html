@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block meta-headers %}
+    <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+    <meta http-equiv="Access-Control-Allow-Credentials" content="true"/>
+    <meta http-equiv="Access-Control-Allow-Methods" content="GET"/>
+    <meta http-equiv="Access-Control-Allow-Headers" content="Content-Type"/>
+{% endblock %}
+
+{% block css-headers %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/stati.css">
+{% endblock %}
+
+{% block script-headers %}
+{% endblock %}
+
+{% block title-section %}
+    <title> User URL Statistics</title>
+{% endblock %}
+
+{% block body-section %}
+
+
+<div class="w3-container" style="margin-bottom:5vh;">
+        
+    <h2 class="title" style="margin-left: 13%; color:#fff">URL Statistics</h2>
+    <p style="text-align:right; font-style:italic; margin-right:13%; color:rgb(0,0,0,0.6) ">*All the details given about time is in IST</p>
+    <div id="url_list">
+
+        <!-- Structure of a single row
+            <div class="w3-bar">        
+                    <img src="/static/images/img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                    <div class="w3-bar-item">
+                        <span class="w3-large">Jill</span><br>
+                        <div class="row">
+                            <div class="column"></div>
+                            <div class="column"></div>
+                        </div>
+                    </div>
+                </div> 
+        -->
+
+    </div>
+  </div>
+  
+
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="/static/js/stati_dom_creater.js"></script>
+{% endblock %}

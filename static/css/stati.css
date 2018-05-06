@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Rokkitt');
+
+
+body{
+    background-image: url('../images/stati-bg.jpg');
+    background-position-x: 0vh;
+}
+
+.row-item{
+    border-radius: 1vh !important;
+}
+
+.row-card{
+    width: 75%;
+    background: #fff !important;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 12%;
+    font-family: 'Rokkitt', serif;
+
+}
+
+a.short-link{
+    color: #0000ee;
+    text-decoration: underline !important;
+}
+
+
+@media screen and (max-width: 600px) {
+    /* .column {
+        width: 100%;
+    } */
+
+    .row-card{
+        width: 100%;
+        margin-top: 1vh;
+        margin-left: 1vw;
+    }
+}
