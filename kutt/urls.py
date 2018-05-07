@@ -33,6 +33,7 @@ urlpatterns = [
     path('custom_shorten/',views.custom_shorten),
     path('statistics/', views.statistics),
     path('get_statistics/', views.show_stati),
+    path('profile/',views.profile),
 
     # keep this section in the bottom in order to prevent overriding the shortened URL and pre defined URL
     re_path(r'^.*/$',views.get_url),    # shortened url matching
