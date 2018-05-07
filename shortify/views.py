@@ -328,7 +328,7 @@ def custom_shorten(request):
 
 def statistics(request):
     if not request.user.is_authenticated:
-        return render(request, '404.html', {})
+        return redirect('/login')
     return render(request, 'stati.html',{})
 
 
@@ -342,7 +342,6 @@ def show_stati(request):
 
     # if not authenticated return 404 page
     if not user.is_authenticated:
-        print('not ajax')
         return render(request, '404.html', {})
     
     # get all urls from UserURLs

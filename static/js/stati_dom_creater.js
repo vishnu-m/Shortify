@@ -50,6 +50,7 @@ function add_list_item(row){
     var url_sec = $('<div></div>');
     var date_sec = $('<div></div>');
 
+    get_meta_data(row['url']);
 
     // defining the URL section and setting the text inside it
     url_sec.addClass('w3-half');
@@ -90,28 +91,28 @@ function add_list_item(row){
 }
 
 function get_meta_data(url){
-        var text = ''
-        $.ajax({
-            url: url,
-            type: 'GET',
-            beforeSend: function(xmlhttp){
-                // xmlhttp.setRequestHeader( "Pragma", "no-cache" );
-                // xmlhttp.setRequestHeader( "Cache-Control", "no-cache" );
-                xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
-                xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-                xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET");
-                xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
-            },
-            success: function(response){
-                var el = $('<html></html');
-                el.html(response);
+        // var text = ''
+        // $.ajax({
+        //     url: url,
+        //     type: 'GET',
+        //     beforeSend: function(xmlhttp){
+        //         // xmlhttp.setRequestHeader( "Pragma", "no-cache" );
+        //         // xmlhttp.setRequestHeader( "Cache-Control", "no-cache" );
+        //         xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+        //         xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
+        //         xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET");
+        //         xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
+        //     },
+        //     success: function(response){
+        //         var el = $('<html></html');
+        //         el.html(response);
 
-                var title = $('title',el)[0];
-                window.text = $(title).text();
-            }
-        });
-        console.log(window.text);
-        return window.text;
+        //         var title = $('title',el)[0];
+        //         window.text = $(title).text();
+        //     }
+        // });
+        // console.log(window.text);
+        // return window.text;
         // $.get(url).done(function(response){
         //     console.log(url);
         //     // console.log(response);
@@ -137,6 +138,55 @@ function get_meta_data(url){
         // }).fail(function(){
     
         // });
-    
+
+        var xhr = createCORSRequest('GET',url);
+        xhr.setRequestHeader(
+            'X-Custom-Header', 'value');
+
+        if( !xhr){
+            console.log("CORS not supported");
+        }
+        console.log('in get');
+        xhr.onload = function() {
+        var responseText = xhr.responseText;
+        console.log(getTitle(responseText));
+        console.log(url);
+        // process the response.
+        };
+        
+        xhr.onerror = function() {
+            console.log('There was an error!');
+        };
+           
+        xhr.send();
     
 }
+
+function getTitle(text) {
+    return text.match('<title>(.*)?</title>')[1];
+  }
+
+
+function createCORSRequest(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+  
+      // Check if the XMLHttpRequest object has a "withCredentials" property.
+      // "withCredentials" only exists on XMLHTTPRequest2 objects.
+      xhr.open(method, url, true);
+  
+    } else if (typeof XDomainRequest != "undefined") {
+  
+      // Otherwise, check if XDomainRequest.
+      // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+      xhr = new XDomainRequest();
+      xhr.open(method, url);
+  
+    } else {
+  
+      // Otherwise, CORS is not supported by the browser.
+      xhr = null;
+  
+    }
+    return xhr;
+  }
