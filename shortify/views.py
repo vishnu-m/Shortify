@@ -214,7 +214,7 @@ def login_user(request):
     if request.user_agent.os.family == 'Android':
         pass
     elif not request.is_ajax():
-        elif request.user.is_authenticated:
+        if request.user.is_authenticated:
             return redirect('/')
         return render(request,'login.html',{})
 
