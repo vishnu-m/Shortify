@@ -352,7 +352,10 @@ def show_stati(request):
     user = request.user
 
     # if not ajax return 404 page
-    if not request.is_ajax():
+    # but if it is from android bypass it
+    if request.user_agent.os.type == 'Android':
+        pass
+    elif not request.is_ajax():
         print('not ajax')
         return render(request, '404.html', {})
 
