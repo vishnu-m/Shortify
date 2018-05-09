@@ -11,9 +11,16 @@ $(document).ready(function(){
 function fetch_data(){
     $.get('/get_statistics/')
     .done(function(response){
+        // var urls = Array();
+        // for (const row of response.data) {
+        //     urls.push(row['url']);
+        // }
+        // console.log(urls);
+        // console.log(data);
         for ( let row of response.data){
+            $('#loader').hide();
             add_list_item(row);
-        }
+        }  
     })
     .fail(function(){
         console.log('something went wrong');
@@ -50,11 +57,12 @@ function add_list_item(row){
     var url_sec = $('<div></div>');
     var date_sec = $('<div></div>');
 
-    get_meta_data(row['url']);
+    // var data = get_meta_data(row['url']);
+    // var title = data[row['url']][0];
 
     // defining the URL section and setting the text inside it
     url_sec.addClass('w3-half');
-    url_sec.text(row['url'] );
+    url_sec.text(row['title']);
 
     // defining the date section and setting the date in it
     date_sec.addClass('w3-half');
@@ -88,105 +96,5 @@ function add_list_item(row){
 
     // appends the row to the main list
     url_list.append(row_item);
+    row_item.slideDown(500);
 }
-
-function get_meta_data(url){
-        // var text = ''
-        // $.ajax({
-        //     url: url,
-        //     type: 'GET',
-        //     beforeSend: function(xmlhttp){
-        //         // xmlhttp.setRequestHeader( "Pragma", "no-cache" );
-        //         // xmlhttp.setRequestHeader( "Cache-Control", "no-cache" );
-        //         xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
-        //         xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-        //         xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET");
-        //         xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
-        //     },
-        //     success: function(response){
-        //         var el = $('<html></html');
-        //         el.html(response);
-
-        //         var title = $('title',el)[0];
-        //         window.text = $(title).text();
-        //     }
-        // });
-        // console.log(window.text);
-        // return window.text;
-        // $.get(url).done(function(response){
-        //     console.log(url);
-        //     // console.log(response);
-        //     var pattern = /<title>/i ///^<title>.+<\/title>/i;
-        //     result = pattern.exec(response);
-        //     console.log(result);
-        //     var start = result.index;
-
-        //     var pattern = /<\/title>/i;
-        //     result = pattern.exec(response);
-        //     console.log(result);
-        //     var stop = result.index;
-
-        //     r = '';
-        //     for( var i = start + 7; i < stop; i++){
-        //         r += response[i];
-        //     }
-        //     console.log(r);
-        //     return r;
-            
-        //     // var desc = $(response).filter('title').attr('content');
-        //     // console.log(desc);
-        // }).fail(function(){
-    
-        // });
-
-        var xhr = createCORSRequest('GET',url);
-        xhr.setRequestHeader(
-            'X-Custom-Header', 'value');
-
-        if( !xhr){
-            console.log("CORS not supported");
-        }
-        console.log('in get');
-        xhr.onload = function() {
-        var responseText = xhr.responseText;
-        console.log(getTitle(responseText));
-        console.log(url);
-        // process the response.
-        };
-        
-        xhr.onerror = function() {
-            console.log('There was an error!');
-        };
-           
-        xhr.send();
-    
-}
-
-function getTitle(text) {
-    return text.match('<title>(.*)?</title>')[1];
-  }
-
-
-function createCORSRequest(method, url) {
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) {
-  
-      // Check if the XMLHttpRequest object has a "withCredentials" property.
-      // "withCredentials" only exists on XMLHTTPRequest2 objects.
-      xhr.open(method, url, true);
-  
-    } else if (typeof XDomainRequest != "undefined") {
-  
-      // Otherwise, check if XDomainRequest.
-      // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-      xhr = new XDomainRequest();
-      xhr.open(method, url);
-  
-    } else {
-  
-      // Otherwise, CORS is not supported by the browser.
-      xhr = null;
-  
-    }
-    return xhr;
-  }

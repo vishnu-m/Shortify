@@ -5,17 +5,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from .models import UserURL,AnonymousURL, UserPhoneNumber
 from datetime import datetime
-<<<<<<< HEAD
 from dateutil import tz
 from kutt import settings
 import random
 import string
+import requests
+from bs4 import BeautifulSoup
 from datetime import datetime
-=======
-from kutt import settings
-import random
-import string
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
 import re
 
 # Create your views here.
@@ -23,24 +19,17 @@ import re
 def home(request):
     return render(request,'index.html',{})
 
-<<<<<<< HEAD
-=======
 def profile(request):
     return render(request,'user_profile.html',{})
 
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
 @csrf_exempt
 def short(request):
     uri = str(request.build_absolute_uri())
     host = uri.split('/')[2]
-<<<<<<< HEAD
     
     if request.method != 'POST':
         return HttpResponse('not found')
         
-=======
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     url = str(request.POST.get('url'))
 
     # prepend http:// to the url if not present
@@ -50,11 +39,7 @@ def short(request):
     # get the user
     user = request.user
 
-<<<<<<< HEAD
     # check whether the url already added 
-=======
-    # check whether the url already added
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     if request.user.is_authenticated:
         # in the case of registered users
         is_existing = UserURL.objects.filter(url=url).exists()
@@ -70,17 +55,10 @@ def short(request):
             hash_text = AnonymousURL.objects.get(url=url).hash_text
             short_url = 'http://' + host + "/" + hash_text
             return HttpResponse(short_url)
-<<<<<<< HEAD
         
     
         
             
-=======
-
-
-
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     # create a hash
     hash_text = generate_hash()
 
@@ -92,32 +70,22 @@ def short(request):
         '''add to anonymouse urls'''
         u = AnonymousURL.objects.create(url=url, hash_text = hash_text, date_added = datetime.now())
     else:
+        # get the URL meta data
+        title, desc = get_data(url)
         # add to the user urls
-        u = UserURL.objects.create(url = url, user = user, hash_text = hash_text, date_added = datetime.now())
-<<<<<<< HEAD
+        u = UserURL.objects.create(url = url, user = user, hash_text = hash_text, page_title = title, page_desc = desc, date_added = datetime.now())
     
     if u:
         return HttpResponse(short_url)
     else:
         return Http404("Something went wrong")   
-=======
-
-    if u:
-        return HttpResponse(short_url)
-    else:
-        return Http404("Something went wrong")
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
 
 
     return HttpResponse(text)
 
 def get_url(request):
     path = str(request.path)
-<<<<<<< HEAD
     
-=======
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     # removing the slashes
     path = path[1:-1]
 
@@ -126,7 +94,6 @@ def get_url(request):
     if user.is_authenticated:
         row = UserURL.objects.filter(hash_text= path, user = user)
         if row.exists():
-<<<<<<< HEAD
             row = UserURL.objects.get(hash_text= path, user = user)
             row.no_of_clicks += 1
             row.save()
@@ -140,14 +107,6 @@ def get_url(request):
         if row.exists():
             return redirect(row[0].url)       
     
-=======
-            return redirect(row[0].url)
-    else:
-        row = AnonymousURL.objects.filter(hash_text= path)
-        if row.exists():
-            return redirect(row[0].url)
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     return render(request,'404.html',{})
 
 def generate_hash():
@@ -164,19 +123,11 @@ def generate_hash():
 
 @csrf_exempt
 def validate(request):
-<<<<<<< HEAD
     
     # if it is not ajax no need of responding
     if not request.is_ajax():
         return render(request,'404.html',{})
     
-=======
-
-    # if it is not ajax no need of responding
-    if not request.is_ajax():
-        return render(request,'404.html',{})
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     # if it is, then
     email = str(request.POST.get('email'))
     phone = str(request.POST.get('phone'))
@@ -214,14 +165,12 @@ def validate(request):
 def signup(request):
 
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('/')
         return render(request, 'signup.html', {})
 
     response = validate(request)
-<<<<<<< HEAD
     
-=======
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     if response['email']:
         response = {'status': 404, 'text':'Email Exists'}
         return JsonResponse(response)
@@ -231,11 +180,7 @@ def signup(request):
     elif response['username']:
         response = {'status': 404, 'text':'Username Exists'}
         return JsonResponse(response)
-<<<<<<< HEAD
     
-=======
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     # sign up starts
     fname = request.POST.get('first_name')
     lname = request.POST.get('last_name')
@@ -244,17 +189,8 @@ def signup(request):
     phone = request.POST.get('phone')
     password = request.POST.get('password')
 
-<<<<<<< HEAD
     u = User.objects.create_user(first_name = fname, last_name = lname, username = username, email = email, password = password)
     
-=======
-
-    print(lname)
-    print('%s %s %s %s %s %s'%(fname, lname, username, email, phone, password))
-
-    u = User.objects.create_user(first_name = fname, last_name = lname, username = username, email = email, password = password)
-
->>>>>>> ff12bd9b93658407f167043a28e4ad37681385d1
     if u:
         # success
         p = UserPhoneNumber(user = u, phone = phone)
@@ -275,9 +211,12 @@ def signup(request):
 
 @csrf_exempt
 def login_user(request):
+    print(request.user_agent.os.family)
     if not request.is_ajax():
+        if request.user.is_authenticated:
+            return redirect('/')
         return render(request,'login.html',{})
-    
+
     username = request.POST.get('username')
     password = request.POST.get('password')
 
@@ -383,7 +322,10 @@ def custom_shorten(request):
         response['text'] = 'URL exists'
         return JsonResponse(response)
 
-    u = UserURL.objects.create(user = request.user, url = url, hash_text = hash_text, date_added = datetime.now())
+    # get the meta data of the URL
+    title, desc = get_data(url)
+
+    u = UserURL.objects.create(user = request.user, url = url, hash_text = hash_text, page_title = title, page_desc = desc, date_added = datetime.now())
     if u:
         # get the hostname
         uri = str(request.build_absolute_uri())
@@ -438,8 +380,47 @@ def show_stati(request):
 
         urls['date_added'] = datetime.strftime(actual_date, '%a %d %b %Y %I:%M %p')
         urls['clicks'] = url.no_of_clicks
+        urls['title'] = url.page_title
+        urls['desc'] = url.page_desc
         data.append(urls)
         urls = {}
     print(data)
     print(all_urls)
     return JsonResponse({'data':data})
+
+
+def get_data(url):
+    if url.startswith('http:') or url.startswith('https:'):
+        pass
+    else:
+        url = 'http://' + url
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    metas = soup.find_all('meta')
+    desc = [ meta.attrs['content'] for meta in metas if 'name' in meta.attrs and meta.attrs['name'] == 'description' ]
+    title = soup.find_all('title')[0].text
+
+    if len(desc) != 0:
+        desc = desc[0]
+    else:
+        desc = ''
+    return title, desc
+    
+
+
+
+def get_m(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    metas = soup.find_all('meta')
+    r = response.text.split('\n')
+    for i in r:
+            print(i)
+    img_url = []
+    attr_list = {'property':'og:image', }
+    while len(img_url) == 0:
+        img_url = [ meta.attrs['content'] for meta in metas if 'property' in meta.attrs and meta.attrs[attribute] == value ]
+
+    return img_url
+

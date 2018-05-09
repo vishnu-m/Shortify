@@ -33,8 +33,11 @@
                             {% if user.is_authenticated %} 
                                 <li class="user-name">Welcome {{ user.username }}</li>
                                 <li>
-                                      <a href="/statistics/">Statistics</a>
+                                      <a href="/profile/">Profile</a>
                                 </li>
+                                <li>
+                                        <a href="/statistics/">Statistics</a>
+                                  </li>
                             {% else %}
                             <li>
                                     <a href="/login/">Log In</a>

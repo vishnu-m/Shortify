@@ -1201,14 +1201,14 @@
 			-ms-transition: opacity 0.325s ease-in-out;
 			transition: opacity 0.325s ease-in-out;
 			position: relative;
-			margin-top: 3.5rem;
+			/* margin-top: 3.5rem; */
 		}
 
 			#header > *:before {
 				content: '';
 				display: block;
 				position: absolute;
-				top: calc(-3.5rem - 1px);
+				/* top: calc(-3.5rem - 1px); */
 				left: calc(50% - 1px);
 				width: 1px;
 				height: calc(3.5rem + 1px);
@@ -1292,7 +1292,7 @@
 				#header nav ul li a {
 					display: block;
 					min-width: 7.5rem;
-					height: 2.75rem;
+					/* height: 2.75rem; */
 					line-height: 2.75rem;
 					padding: 0 1.25rem 0 1.45rem;
 					text-transform: uppercase;

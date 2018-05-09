@@ -1,22 +1,23 @@
+{% extends 'base.html' %}
 
-<!DOCTYPE HTML>
-
-<html>
-	<head>
+{% block title-section %}
 		<title>Profile</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link href="/static/css/main.css" rel="stylesheet" />
+{% endblock %}
+
+{% block css-headers %}
+		<link href="/static/css/profile.css" rel="stylesheet" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<noscript><link href="/static/css/noscript.css" rel="stylesheet" /></noscript>
-    <!-- Scripts -->
+{% endblock %}
+	<!-- Scripts -->
+{% block script-headers %}
 			<script src="/static/js/jquery.min.js"></script>
 			<script src="/static/js/skel.min.js"></script>
 			<script src="/static/js/util.js"></script>
 			<script src="/static/js/main.js"></script>
+{% endblock %}
 
-	</head>
-	<body>
+{% block body-section %}
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -72,16 +73,9 @@
 
 					</div>
 
-				<!-- Footer -->
-        <div class="footer fixed-bottom">
-          <p> &copy; 2018 All Rights Reserved</p>
-        </div>
-
+		
 			</div>
 
 		<!-- BG -->
 			<div id="bg"></div>
-
-
-	</body>
-</html>
+{% endblock %}

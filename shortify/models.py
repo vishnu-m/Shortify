@@ -16,6 +16,8 @@ class UserURL(models.Model):
     hash_text = models.TextField(max_length=8, blank=False, null=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     no_of_clicks = models.PositiveIntegerField(default = 0, blank=False, null=False)
+    page_title = models.TextField(default='',max_length=10000, blank= False, null=False)
+    page_desc = models.TextField(default='',max_length=10000, blank=False, null=False)
     date_added = models.DateTimeField()
 
     def __str__(self):
