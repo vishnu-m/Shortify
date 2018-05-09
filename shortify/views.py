@@ -211,9 +211,9 @@ def signup(request):
 
 @csrf_exempt
 def login_user(request):
-    if not request.is_ajax():
-        if request.user_agent.os.family == 'Android':
-            pass
+    if request.user_agent.os.family == 'Android':
+        pass
+    elif not request.is_ajax():
         elif request.user.is_authenticated:
             return redirect('/')
         return render(request,'login.html',{})
