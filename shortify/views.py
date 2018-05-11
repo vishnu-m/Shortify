@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
-from .models import UserURL,AnonymousURL, UserPhoneNumber
+from .models import UserURL,AnonymousURL, UserPhoneNumber, UserURLStatistics
 from datetime import datetime
 from dateutil import tz
 from kutt import settings
@@ -71,9 +71,9 @@ def short(request):
         u = AnonymousURL.objects.create(url=url, hash_text = hash_text, date_added = datetime.now())
     else:
         # get the URL meta data
-        title, desc = get_data(url)
+        title, desc, icon_url = get_data(url)
         # add to the user urls
-        u = UserURL.objects.create(url = url, user = user, hash_text = hash_text, page_title = title, page_desc = desc, date_added = datetime.now())
+        u = UserURL.objects.create(url = url, user = user, hash_text = hash_text, page_title = title, page_desc = desc, page_icon_url = icon_url, date_added = datetime.now())
     
     if u:
         return HttpResponse(short_url)
@@ -95,6 +95,8 @@ def get_url(request):
         row = UserURL.objects.filter(hash_text= path, user = user)
         if row.exists():
             row = UserURL.objects.get(hash_text= path, user = user)
+            click = UserURLStatistics.objects.create(user = user, url = row, date_clicked = datetime.now())
+
             row.no_of_clicks += 1
             row.save()
             url = row.url
@@ -306,7 +308,7 @@ def custom_shorten(request):
     if len(url) == 0 or len(hash_text) == 0:
         return Http404('invalid url or tag')
     
-    if not url.startswith('http:') or not url.startswith('https:'):
+    if not url.startswith('http:') and not url.startswith('https:'):
         url = 'http://' + url
 
     print('%s %s'%(url,hash_text))
@@ -324,9 +326,9 @@ def custom_shorten(request):
         return JsonResponse(response)
 
     # get the meta data of the URL
-    title, desc = get_data(url)
+    title, desc, icon_url = get_data(url)
 
-    u = UserURL.objects.create(user = request.user, url = url, hash_text = hash_text, page_title = title, page_desc = desc, date_added = datetime.now())
+    u = UserURL.objects.create(user = request.user, url = url, hash_text = hash_text, page_title = title, page_desc = desc, page_icon_url = icon_url, date_added = datetime.now())
     if u:
         # get the hostname
         uri = str(request.build_absolute_uri())
@@ -353,7 +355,8 @@ def show_stati(request):
 
     # if not ajax return 404 page
     # but if it is from android bypass it
-    if request.user_agent.os.type == 'Android':
+    # print(request.user_agent.os.family)
+    if request.user_agent.os.family == 'Android':
         pass
     elif not request.is_ajax():
         print('not ajax')
@@ -372,8 +375,21 @@ def show_stati(request):
 
     # get the minified URL statistics
     for url in all_urls:
-        urls['url'] = url.url
-        urls['hash'] = url.hash_text
+        # get the detailed statistics
+        detail = UserURLStatistics.objects.filter(url = url, user = user)
+        dates = detail.values('date_clicked')
+        dates = [v['date_clicked'] for v in [value for value in dates]]
+        print(list(set(dates)))
+        
+        stati_list = []
+        for date in list(set(dates)):
+            stati = {}
+            print(type(date))
+            total_clicks = detail.filter(date_clicked__date = date).count()
+            stati['x'] = datetime.strftime(date, '%d %b %Y')
+            stati['y'] = total_clicks
+            stati_list.append(stati)
+        
         # convert date from UTC to Asia/Kolkata
         date = url.date_added
         UTC = tz.gettz('UTC')
@@ -381,15 +397,17 @@ def show_stati(request):
 
         date.replace(tzinfo = UTC)
         actual_date = date.astimezone(IN)
-
+        
+        urls['url'] = url.url
+        urls['hash'] = url.hash_text
         urls['date_added'] = datetime.strftime(actual_date, '%a %d %b %Y %I:%M %p')
         urls['clicks'] = url.no_of_clicks
         urls['title'] = url.page_title
         urls['desc'] = url.page_desc
+        urls['icon_url'] = url.page_icon_url
+        urls['stati'] = stati_list
         data.append(urls)
         urls = {}
-    print(data)
-    print(all_urls)
     return JsonResponse({'data':data})
 
 
@@ -404,27 +422,43 @@ def get_data(url):
     metas = soup.find_all('meta')
     desc = [ meta.attrs['content'] for meta in metas if 'name' in meta.attrs and meta.attrs['name'] == 'description' ]
     title = soup.find_all('title')[0].text
+    title = ''.join([i if ord(i) < 128 else ' ' for i in title])  # removing non-ascii chars
 
     if len(desc) != 0:
         desc = desc[0]
+        desc = ''.join([i if ord(i) < 128 else ' ' for i in desc]) # removing non-ascii chars
     else:
         desc = ''
-    return title, desc
+    return title, desc, get_icon_url(url)
     
 
 
 
-def get_m(url):
+def get_icon_url(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    metas = soup.find_all('meta')
-    r = response.text.split('\n')
-    for i in r:
+    all_head = soup.findAll(href=re.compile(r'/.a\w+'))
+    img_url = ''
+    print(all_head)
+    for i in all_head:
+        strre=re.compile('shortcut icon', re.IGNORECASE)
+        m=strre.search(str(i))
+        if m:
             print(i)
-    img_url = []
-    attr_list = {'property':'og:image', }
-    while len(img_url) == 0:
-        img_url = [ meta.attrs['content'] for meta in metas if 'property' in meta.attrs and meta.attrs[attribute] == value ]
+            img_url = i["href"]
+    
+    if img_url == '':
+        return img_url
+    return to_absolute_url(img_url,response.url)
 
-    return img_url
 
+def to_absolute_url(url, origin):
+    # to make the url of the icon to absolute
+    if url.startswith('http://') or url.startswith('https://'):
+        return url
+    # removing the trailing ( and initial ) slash if any
+    if str(origin)[-1] == '/':
+        origin = origin[:-1]
+    if str(url)[0] == '/':
+        url = url[1:]
+    return origin + '/' + url

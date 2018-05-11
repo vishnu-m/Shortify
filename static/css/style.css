@@ -720,11 +720,7 @@ a.title-white p :hover{
     text-decoration: dotted;
 }
 
-.fixed-bottom{
-    position: absolute;
-    top:90vh;
-    left:0vh;
-}
+
 
 .center-align{
     text-align: center;

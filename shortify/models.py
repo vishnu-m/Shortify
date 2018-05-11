@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 
@@ -18,6 +19,7 @@ class UserURL(models.Model):
     no_of_clicks = models.PositiveIntegerField(default = 0, blank=False, null=False)
     page_title = models.TextField(default='',max_length=10000, blank= False, null=False)
     page_desc = models.TextField(default='',max_length=10000, blank=False, null=False)
+    page_icon_url = models.TextField(default='',max_length=10000, blank=False, null=False)
     date_added = models.DateTimeField()
 
     def __str__(self):
@@ -26,3 +28,17 @@ class UserURL(models.Model):
 class UserPhoneNumber(models.Model):
     user = models.OneToOneField(to = User, on_delete = models.CASCADE)
     phone = models.TextField(max_length=13, blank=False, null=False)
+
+
+# on each click a new row wil be added here
+class UserURLStatistics(models.Model):
+    user = models.ForeignKey(to = User, on_delete = models.CASCADE)
+    url = models.ForeignKey(to = UserURL, on_delete = models.CASCADE);
+    date_clicked = models.DateTimeField()
+
+    def __str__(self):
+        return str(self.user.username) + ' ' + str(self.url.url) + '  ' + datetime.strftime(self.date_clicked, '%a %d %b %Y %I:%M %p %Z')
+
+    class Meta:
+        verbose_name = 'User URL Statistics'
+        verbose_name_plural = verbose_name

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Rokkitt');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 
 body{
@@ -8,6 +8,7 @@ body{
 
 .row-item{
     border-radius: 1vh !important;
+    padding: 1.5vh 1vw;
 }
 
 .row-card{
@@ -16,24 +17,78 @@ body{
     margin-top: 1vh;
     margin-bottom: 1vh;
     margin-left: 12%;
-    font-family: 'Rokkitt', serif;
-
 }
 
-a.short-link{
+.short-link{
     color: #0000ee;
+}
+a:hover{
+    color: #0000ee !important;
     text-decoration: underline !important;
 }
 
+.url-sec{
+    display: block;
+    color: rgb(0,0,0,0.5);
+}
+.date-sec{
+    display: block;
+    color: rgb(0,0,0,0.7);
+}
+.hash-sec{
+    display: block;
+    color: rgb(0,0,0,0.5);
+}
+.title-sec{
+    color: rgb(0,0,0);
+    font-size: 2.4vh;
+    display: block;
+}
+.avatar-sec{
+    display: block;
+    width: 7% !important;
+}
+
+.detail-view{
+    background: rgb(255,255,255);
+    display: none;
+}
+
+.detail-card{
+
+}
+
+#myChart{
+    width: 100%;
+    height: 50vh !important;
+} 
+
 
 @media screen and (max-width: 600px) {
-    /* .column {
-        width: 100%;
-    } */
 
+    .row-item{
+        padding: 0.5vh 1vw;
+    }
     .row-card{
         width: 100%;
         margin-top: 1vh;
-        margin-left: 1vw;
+        margin-left: 0.5vw;
+    }
+    .title-sec{
+        font-size: 2.3vh;
+    }
+    .hash-sec{
+        display: none;
+    }
+    .date-sec{
+        /* text-align: left !important; */
+        display: none !important;
+    }
+    .avatar-sec{
+        width: 15% !important;
+        display: inline-block !important;
+    }
+    .w3-half{
+        padding: 0 0 !important;
     }
 }
