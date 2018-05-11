@@ -215,10 +215,10 @@ def signup(request):
 def login_user(request):
     if request.user_agent.os.family == 'Android':
         pass
-    elif not request.is_ajax():
-        if request.user.is_authenticated:
-            return redirect('/')
-        return render(request,'login.html',{})
+    
+    if request.user.is_authenticated:
+        return redirect('/')
+    return render(request,'login.html',{})
 
     username = request.POST.get('username')
     password = request.POST.get('password')
