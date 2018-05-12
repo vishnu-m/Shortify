@@ -79,6 +79,25 @@ a:hover{
     color: rgb(0, 0, 0, 0.75);
 }
 
+.empty-message-sec{
+    padding: 4vh 3vw;
+}
+.empty-message-title{
+    text-align: center;
+    font-size: 3vh;
+    color: rgb(120, 0, 0);
+}
+.empty-message-subtitle{
+    text-align: center;
+    font-size: 2.5vh;
+    color:rgb(120, 0, 0, 0.6);
+}
+.empty-message-content{
+    text-align: center;
+    font-size: 2.4vh;
+    color:rgb(0, 0, 0, 0.6);
+}
+
 @media screen and (max-width: 600px) {
 
     .row-item{
@@ -126,5 +145,8 @@ a:hover{
     .no_of_click{
         padding:0 0 0 6vw;
         color: rgb(0, 0, 0, 0.75);
+    }
+    .empty-message-sec{
+        padding: 4vh 5vw;
     }
 }

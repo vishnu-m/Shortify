@@ -11,14 +11,36 @@ $(document).ready(function(){
 function fetch_data(){
     $.get('/get_statistics/')
     .done(function(response){
-        // var urls = Array();
-        // for (const row of response.data) {
-        //     urls.push(row['url']);
-        // }
-        // console.log(urls);
-        // console.log(data);
+        // hide the loader that has been spinning
+        $('#loader').hide();
+
+        // if the user has no statistic data show a message
+        if( response.data.length == 0){
+            var message = $('<div></div>');
+            message.addClass('w3-card row-card row-item title empty-message-sec');
+            
+            var title_sec = $('<div></div>');
+            title_sec.addClass('empty-message-title');
+            title_sec.text('There is nothing up here yet !');
+
+            var sub_title_sec = $('<div></div>');
+            sub_title_sec.addClass('empty-message-subtitle');
+            sub_title_sec.html('<a href="/">Get back to home</a>');
+
+            var message_sec = $('<div></div>');
+            message_sec.addClass('empty-message-content');
+            message_sec.html('Shorten links, Save Them, Share it to your Circles<br>Here shows all the saved URLs you have got');
+
+            message.append(title_sec);
+            message.append(sub_title_sec);
+            message.append(message_sec);
+            
+
+            $('#url_list').append(message);
+            return;
+        }
+        // else show all the statistical data he has got
         for ( let row of response.data){
-            $('#loader').hide();
             add_list_item(row);
         }  
     })
