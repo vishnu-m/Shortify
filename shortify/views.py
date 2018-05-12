@@ -12,6 +12,7 @@ import string
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import datetime as dt
 import re
 
 # Create your views here.
@@ -216,9 +217,10 @@ def login_user(request):
     if request.user_agent.os.family == 'Android':
         pass
     
-    if request.user.is_authenticated:
-        return redirect('/')
-    return render(request,'login.html',{})
+    if not request.method != 'POST':
+        if request.user.is_authenticated:
+            return redirect('/')
+        return render(request,'login.html',{})
 
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -384,8 +386,9 @@ def show_stati(request):
         stati_list = []
         for date in list(set(dates)):
             stati = {}
-            print(type(date))
-            total_clicks = detail.filter(date_clicked__date = date).count()
+            min_dt = datetime.combine(date, dt.time.min)
+            max_dt = datetime.combine(date, dt.time.max)
+            total_clicks = detail.filter(date_clicked__range = (min_dt, max_dt)).count()
             stati['x'] = datetime.strftime(date, '%d %b %Y')
             stati['y'] = total_clicks
             stati_list.append(stati)

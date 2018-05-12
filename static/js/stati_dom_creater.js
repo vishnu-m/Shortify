@@ -123,9 +123,11 @@ function add_list_item(row){
     row_item.append(content_div);
     row_item.append(detail_view);
 
-    // row_item.on('click',function(){
-    //     show_details(this, row);
-    // });
+    // show statistics in detail on clicking the corresponding row
+    row_item.on('click',function(){
+        show_details(this, row);
+    });
+
     // appends the row to the main list
     url_list.append(row_item);
     row_item.slideDown(500);
@@ -133,47 +135,92 @@ function add_list_item(row){
 
 
 function show_details(card, data){
-    
 
+    // get the detail view DOM object and toggles it 
     var detail_view = $(card).children()[2];
     $(detail_view).toggle();
 
+    // if the details section is visible do nothing
     if ( !($(detail_view).is(':visible'))){
         return;
     }
-    var detail_sec =  create_detail_view(data);
+
+    // hide all the other detail sections and show only the currently engaged one
+    toggle_detail_view(detail_view);
+
+    // get the DOM object and chart section id for detail view and chart
+    var detail =  create_detail_view(data);
+    var detail_sec = detail[0];
+    var chart_sec_id = detail[1];
+
+    // set the detail view section
     $(detail_view).html(detail_sec);
 
-    show_graph(data['stati']);
-
-    
+    // if clicks are non zero, invoke function to show the graph
+    if ( data['clicks'] != 0){
+        show_graph(data['stati'], chart_sec_id);
+    }
+        
 }
 
+// shows the currently engaged detail view and hides all the others
+function toggle_detail_view(current_card){
+    // hides all the detail cards first
+    var detail_cards = $('.detail-view');
+    for( let card of Array(detail_cards)){
+        $(card).hide();
+    }
+
+    // and then show the currently engaged card only
+    $(current_card).show();
+
+}
+
+
+// creates the detail view main object and return the created DOM object and the id of the chart section
 function create_detail_view(data){
+
+    // creates the parent card in which total clicks and the chart will be displayed
     var detail_card = $('<div></div>');
-    detail_card.addClass('w3-bar detail-card');
 
+    // creates the section for displaying the total no of clicks and add some styles
     var no_of_clicks = $('<div></div>');
+    no_of_clicks.addClass('no_of_click');
+
+    // set the value
     no_of_clicks.text('Total Clicks : ' + data['clicks']);
-
-
-    var chart_sec = $('<canvas id="myChart"></canvas>');
     
+    // set the id for chart section in this row
+    var chart_sec_id = data['hash'];
+    
+    // creates the canvas for chart with the above chart sec id
+    var chart_sec = $('<canvas class = "myChart" id=' + chart_sec_id + '></canvas>');
+    
+    // adds the styles and appends the no of clicks section to the parent
+    detail_card.addClass('w3-bar detail-card');
     detail_card.append(no_of_clicks);
-    detail_card.append(chart_sec);
 
-    return detail_card;
+    // if clicks are non zero add the chart section to parent object
+    if ( data['clicks'] != 0)
+        detail_card.append(chart_sec);
+
+    // return the chart sec id and the parent object
+    return [detail_card, chart_sec_id];
 }
 
-// window.onload = function () {
 
-function show_graph(data){
-    var ctx = document.getElementById("myChart").getContext('2d');
+function show_graph(data, chart_id){
+    // get the canvas context
+    var ctx = document.getElementById(chart_id).getContext('2d');
+    
+    // get all the dates and remove duplicate values
     var labels = []
     for ( let date of data){
-        labels.push(date['x']);
+        if( labels.includes(date['x']) == false)
+            labels.push(date['x']);
     }
-    console.log(data);
+    
+    // create the line chart
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -197,7 +244,8 @@ function show_graph(data){
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
-                borderWidth: 1
+                borderWidth: 1,
+                fill : false
             }]
         },
         options: {

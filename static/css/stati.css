@@ -58,11 +58,14 @@ a:hover{
 
 }
 
-#myChart{
+.myChart{
     width: 100%;
     height: 50vh !important;
 } 
 
+.no_of_click{
+    padding:0 0 0 1vw;
+}
 
 @media screen and (max-width: 600px) {
 
@@ -90,5 +93,14 @@ a:hover{
     }
     .w3-half{
         padding: 0 0 !important;
+    }
+
+    .myChart{
+        width: 100%;
+        padding: 0 3vw;
+        height: 30vh !important;
+    }
+    .no_of_click{
+        padding:0 0 0 6vw;
     }
 }
