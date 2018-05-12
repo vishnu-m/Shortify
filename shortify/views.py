@@ -381,11 +381,21 @@ def show_stati(request):
         detail = UserURLStatistics.objects.filter(url = url, user = user)
         dates = detail.values('date_clicked')
         dates = [v['date_clicked'] for v in [value for value in dates]]
-        print(list(set(dates)))
+
+        
+        # to avoid duplicate dates
+        dates = list(set(dates))
+        
+        # sort by date
+        dates = sorted(dates, key = lambda x : x.date())
+
+        # for i in dates:
+        #     print(i)
         
         stati_list = []
-        for date in list(set(dates)):
+        for date in dates:
             stati = {}
+            print(date)
             min_dt = datetime.combine(date, dt.time.min)
             max_dt = datetime.combine(date, dt.time.max)
             total_clicks = detail.filter(date_clicked__range = (min_dt, max_dt)).count()

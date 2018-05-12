@@ -219,7 +219,7 @@ function show_graph(data, chart_id){
         if( labels.includes(date['x']) == false)
             labels.push(date['x']);
     }
-    
+    // labels.sort();
     // create the line chart
     var myChart = new Chart(ctx, {
         type: 'line',
