@@ -29,15 +29,15 @@ a:hover{
 
 .url-sec{
     display: block;
-    color: rgb(0,0,0,0.5);
+    color: rgb(0,0,0,0.75);
 }
 .date-sec{
     display: block;
-    color: rgb(0,0,0,0.7);
+    color: rgb(0,0,0,0.75);
 }
 .hash-sec{
     display: block;
-    color: rgb(0,0,0,0.5);
+    color: rgb(0,0,0,0.75);
 }
 .title-sec{
     color: rgb(0,0,0);
@@ -53,9 +53,20 @@ a:hover{
     background: rgb(255,255,255);
     display: none;
 }
+.desc-sec{
+    color: rgb(0, 0, 0, 0.6);
+    padding: 0 6vw 0 1vw;
+    text-align: justify;
+}
 
 .detail-card{
 
+}
+
+.date-sec-detail-view{
+    display: none;
+    color: rgb(0, 0, 0, 0.75);
+    padding: 0 0 0 1vw !important;
 }
 
 .myChart{
@@ -65,6 +76,26 @@ a:hover{
 
 .no_of_click{
     padding:0 0 0 1vw;
+    color: rgb(0, 0, 0, 0.75);
+}
+
+.empty-message-sec{
+    padding: 4vh 3vw;
+}
+.empty-message-title{
+    text-align: center;
+    font-size: 3vh;
+    color: rgb(120, 0, 0);
+}
+.empty-message-subtitle{
+    text-align: center;
+    font-size: 2.5vh;
+    color:rgb(120, 0, 0, 0.6);
+}
+.empty-message-content{
+    text-align: center;
+    font-size: 2.4vh;
+    color:rgb(0, 0, 0, 0.6);
 }
 
 @media screen and (max-width: 600px) {
@@ -79,6 +110,7 @@ a:hover{
     }
     .title-sec{
         font-size: 2.3vh;
+        /* text-align: justify; */
     }
     .hash-sec{
         display: none;
@@ -91,16 +123,30 @@ a:hover{
         width: 15% !important;
         display: inline-block !important;
     }
+
+    .date-sec-detail-view{
+        display: inline;
+        margin: 0 0 0 6vw !important;
+    }
+    .desc-sec{
+        margin: 0 0 0 6vw !important;
+        padding: 0 5vw 0 0;
+        
+    }
     .w3-half{
         padding: 0 0 !important;
     }
 
     .myChart{
         width: 100%;
-        padding: 0 3vw;
-        height: 30vh !important;
+        padding: 0 0vw;
+        height: 40vh !important;
     }
     .no_of_click{
         padding:0 0 0 6vw;
+        color: rgb(0, 0, 0, 0.75);
+    }
+    .empty-message-sec{
+        padding: 4vh 5vw;
     }
 }

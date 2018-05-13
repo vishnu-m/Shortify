@@ -217,7 +217,7 @@ def login_user(request):
     if request.user_agent.os.family == 'Android':
         pass
     
-    if not request.method != 'POST':
+    if request.method != 'POST':
         if request.user.is_authenticated:
             return redirect('/')
         return render(request,'login.html',{})

@@ -11,14 +11,36 @@ $(document).ready(function(){
 function fetch_data(){
     $.get('/get_statistics/')
     .done(function(response){
-        // var urls = Array();
-        // for (const row of response.data) {
-        //     urls.push(row['url']);
-        // }
-        // console.log(urls);
-        // console.log(data);
+        // hide the loader that has been spinning
+        $('#loader').hide();
+
+        // if the user has no statistic data show a message
+        if( response.data.length == 0){
+            var message = $('<div></div>');
+            message.addClass('w3-card row-card row-item title empty-message-sec');
+            
+            var title_sec = $('<div></div>');
+            title_sec.addClass('empty-message-title');
+            title_sec.text('There is nothing up here yet !');
+
+            var sub_title_sec = $('<div></div>');
+            sub_title_sec.addClass('empty-message-subtitle');
+            sub_title_sec.html('<a href="/">Get back to home</a>');
+
+            var message_sec = $('<div></div>');
+            message_sec.addClass('empty-message-content');
+            message_sec.html('Shorten links, Save Them, Share it to your Circles<br>Here shows all the saved URLs you have got');
+
+            message.append(title_sec);
+            message.append(sub_title_sec);
+            message.append(message_sec);
+            
+
+            $('#url_list').append(message);
+            return;
+        }
+        // else show all the statistical data he has got
         for ( let row of response.data){
-            $('#loader').hide();
             add_list_item(row);
         }  
     })
@@ -124,8 +146,13 @@ function add_list_item(row){
     row_item.append(detail_view);
 
     // show statistics in detail on clicking the corresponding row
-    row_item.on('click',function(){
+    row_item.on('click',function(event){
+        if( $(event.target).is($('#'+row['hash']))){
+            event.preventDefault();
+            return;
+        }
         show_details(this, row);
+
     });
 
     // appends the row to the main list
@@ -183,6 +210,17 @@ function create_detail_view(data){
     // creates the parent card in which total clicks and the chart will be displayed
     var detail_card = $('<div></div>');
 
+    // creates the shortened url section
+    var date_sec = $('<span></span>');
+    date_sec.addClass('date-sec-detail-view');
+    date_sec.text(data['date_added']);
+
+
+    // creates the page description section
+    var desc_sec = $('<div></div>');
+    desc_sec.addClass('desc-sec');
+    desc_sec.text(data['desc']);
+    
     // creates the section for displaying the total no of clicks and add some styles
     var no_of_clicks = $('<div></div>');
     no_of_clicks.addClass('no_of_click');
@@ -198,7 +236,10 @@ function create_detail_view(data){
     
     // adds the styles and appends the no of clicks section to the parent
     detail_card.addClass('w3-bar detail-card');
+    detail_card.append(date_sec);
     detail_card.append(no_of_clicks);
+    detail_card.append(desc_sec);
+    
 
     // if clicks are non zero add the chart section to parent object
     if ( data['clicks'] != 0)
