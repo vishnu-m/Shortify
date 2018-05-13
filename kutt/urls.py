@@ -27,7 +27,7 @@ urlpatterns = [
     path('short/',views.short),
     path('signup/',views.signup),
     path('validate/',views.validate),
-    path('login/',views.login_user),
+    path('login/',views.login_user, name = 'login'),
     path('logout/',views.logout_user),
     path('verify/', views.verify),
     path('custom_shorten/',views.custom_shorten),

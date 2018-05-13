@@ -38,27 +38,40 @@
                                 <li>
                                         <a href="/statistics/">Statistics</a>
                                   </li>
-                            {% else %}
-                            <li>
-                                    <a href="/login/">Log In</a>
-                            </li>
+                            
+
+                            {% else %} 
+
+
+                            {% if not value %}
                             <li>
                                     <a href="/signup/">Create Account</a>
                             </li>
                             {% endif %}
+                            {% if not value2 %}
+                            <li>
+                                    <a href="/login/">Log In</a>
+                            </li>
+                            
+                            {% endif %}
+                            
+                      
+                            <li>
+                              <a href="#!">About</a>
+                            </li>
+                            <li>
+                              <a href="#!">Contact</a>
+                            </li>
                               
-                              <li>
-                                <a href="#!">About</a>
-                              </li>
-                              <li>
-                                <a href="#!">Contact</a>
-                              </li>
+                              
+                           
                               {% if user.is_authenticated %} 
                               <li>
                                     <a href="/logout">Log out</a>
                                   </li>
                             {% endif %}
                             </ul>
+                          {% endif %}
                           </nav>
                         </div>
                     </section>

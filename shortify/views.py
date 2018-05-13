@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponse, Http404, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate 
+from django.contrib.auth.decorators import login_required
 from .models import UserURL,AnonymousURL, UserPhoneNumber, UserURLStatistics
 from datetime import datetime
 from dateutil import tz
@@ -19,7 +20,7 @@ import re
 
 def home(request):
     return render(request,'index.html',{})
-
+@login_required
 def profile(request):
     return render(request,'user_profile.html',{})
 
@@ -166,11 +167,12 @@ def validate(request):
 
 @csrf_exempt
 def signup(request):
+    
 
     if request.method == 'GET':
         if request.user.is_authenticated:
             return redirect('/')
-        return render(request, 'signup.html', {})
+        return render(request, 'signup.html', {'value':'True','value2':False})
 
     response = validate(request)
     
@@ -200,7 +202,9 @@ def signup(request):
         if p:
             # completed
             # perform login
-            login(request,u)
+            #login(request,u)
+            
+            #return redirect('/login')
             response = {'status': 200, 'text':''}
             return JsonResponse(response)
         else:
@@ -217,10 +221,10 @@ def login_user(request):
     if request.user_agent.os.family == 'Android':
         pass
     
-    if not request.method != 'POST':
+    if  request.method != 'POST':
         if request.user.is_authenticated:
             return redirect('/')
-        return render(request,'login.html',{})
+        return render(request,'login.html',{'value2':'True','value':False})
 
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -233,6 +237,7 @@ def login_user(request):
     if u:
         # authentication success
         login(request, u)
+        
         status = '200'
         text = 'You have successfully logged in'
     else:
@@ -345,10 +350,9 @@ def custom_shorten(request):
         response['status'] = 404
         return JsonResponse(response)
 
-
+@login_required
 def statistics(request):
-    if not request.user.is_authenticated:
-        return redirect('/login')
+    
     return render(request, 'stati.html',{})
 
 
