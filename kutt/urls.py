@@ -15,6 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth.views import (
+     login, logout, password_reset , password_reset_done, password_reset_confirm,
+     password_reset_complete )
+from django.urls import path 
+from django.conf.urls import url
 from django.urls import path, re_path
 from django.conf.urls.static import static
 from kutt import settings
@@ -34,6 +39,12 @@ urlpatterns = [
     path('statistics/', views.statistics),
     path('get_statistics/', views.show_stati),
     path('profile/',views.profile),
+    path("password-reset/" , password_reset ,{'template_name':'reset-password.html'} , name = 'reset-password'),
+    path("password-reset/done/" , password_reset_done ,{'template_name':'password_reset_done.html'} , name = 'password_reset_done'),
+    url(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$' ,
+     password_reset_confirm ,{'template_name':'password_reset_confirm.html'}, name = 'password_reset_confirm'),
+
+    path('reset-password/complete', password_reset_complete ,{'template_name':'password_reset_complete.html'} ,name = 'password_reset_complete'),
 
     # keep this section in the bottom in order to prevent overriding the shortened URL and pre defined URL
     re_path(r'^.*/$',views.get_url),    # shortened url matching

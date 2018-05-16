@@ -23,6 +23,13 @@ DB_USER = 'root'
 DB_PASS = 'root'
 URL_HASH_SIZE = 8
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'sreerajavk'
+EMAIL_HOST_PASSWORD = 'sreeraj1997'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -106,7 +113,7 @@ DATABASES = {
         'NAME': 'new_db',
         'USER': DB_USER,
         'PASSWORD': DB_PASS,
-        'HOST': DB_HOST,
+        'HOST': '',
         'PORT': '',
     }
 }
