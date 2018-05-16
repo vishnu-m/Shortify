@@ -8,7 +8,7 @@
   padding-left: 20px;
   float: left;
   line-height: 8vh;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 1.4em;
 }
 .brand a,

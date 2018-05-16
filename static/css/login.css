@@ -430,7 +430,7 @@ label.switch {
 
 li:nth-child(2) a,
 label.switch {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 1px;
