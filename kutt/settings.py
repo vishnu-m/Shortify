@@ -113,7 +113,7 @@ DATABASES = {
         'NAME': 'new_db',
         'USER': DB_USER,
         'PASSWORD': DB_PASS,
-        'HOST': '',
+        'HOST': DB_HOST,
         'PORT': '',
     }
 }
