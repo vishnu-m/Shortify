@@ -38,7 +38,7 @@ SECRET_KEY = 'k+e(-c(o(vl^^t*_siup0_p+s9jk4z4-t+1-+0tg12*kp%55&^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-PRODUCTION_MODE = True
+PRODUCTION_MODE = False
 
 
 CURRRENT_HOST = None
@@ -113,7 +113,7 @@ DATABASES = {
         'NAME': 'new_db',
         'USER': DB_USER,
         'PASSWORD': DB_PASS,
-        'HOST': '',
+        'HOST': ALLOWED_HOSTS[0],
         'PORT': '',
     }
 }
