@@ -31,7 +31,7 @@ $('#signup_form').on('submit',function(event){
         // request successfull 
         if ( response.status == '200'){
             // redirect to home page
-            window.location = "/";
+            window.location = "/login/";
         }
         show_warning(response.text);
     })

@@ -203,7 +203,7 @@ def signup(request):
             # completed
             # perform login
             #login(request,u)
-            
+            p.save()
             #return redirect('/login')
             response = {'status': 200, 'text':''}
             return JsonResponse(response)
