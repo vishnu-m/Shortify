@@ -4,6 +4,7 @@
     <list default="true" id="1f21ab51-ed50-4f78-8f04-1d1dc75748ea" name="Default" comment="">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/password_reset_done.html" afterDir="false" />
@@ -24,6 +25,10 @@
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
 >>>>>>> 062cdf37816b16856abec6248c0695932a710a69
+=======
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/editprofile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/editprofile.js" afterDir="false" />
+>>>>>>> 1a62980fb1eb954cb335a441ef6808f22d3266f2
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -148,16 +153,34 @@
         <entry file="file://$PROJECT_DIR$/static/js/editprofile.js">
 >>>>>>> 062cdf37816b16856abec6248c0695932a710a69
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+            <state relative-caret-position="210">
+              <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userchangeform.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kutt/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userchangeform.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/userchangeform.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
+            <state relative-caret-position="262">
               <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
               <folding>
                 <element signature="e#783#801#0" expanded="true" />
@@ -229,10 +252,14 @@
         <option value="$PROJECT_DIR$/shortify/forms.py" />
         <option value="$PROJECT_DIR$/templates/signup.html" />
         <option value="$PROJECT_DIR$/static/js/signup.js" />
-        <option value="$PROJECT_DIR$/static/js/editprofile.js" />
         <option value="$PROJECT_DIR$/templates/userchangeform.html" />
         <option value="$PROJECT_DIR$/shortify/views.py" />
+<<<<<<< HEAD
 >>>>>>> 062cdf37816b16856abec6248c0695932a710a69
+=======
+        <option value="$PROJECT_DIR$/static/js/editprofile.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+>>>>>>> 1a62980fb1eb954cb335a441ef6808f22d3266f2
       </list>
     </option>
   </component>
@@ -359,7 +386,7 @@
     <frame x="54" y="-4" width="1313" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19527079" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19527079" />
       <window_info anchor="bottom" id="TODO" order="6" />
 <<<<<<< HEAD
       <window_info anchor="right" id="R Packages" order="3" weight="0.32951945" />
@@ -373,7 +400,7 @@
       <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32637855" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32637855" />
       <window_info id="Favorites" order="2" side_tool="true" />
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -393,10 +420,22 @@
 =======
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24942791" />
+<<<<<<< HEAD
 >>>>>>> 062cdf37816b16856abec6248c0695932a710a69
+=======
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19527079" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+>>>>>>> 1a62980fb1eb954cb335a441ef6808f22d3266f2
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="R Packages" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+<<<<<<< HEAD
 <<<<<<< HEAD
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3289256" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -410,9 +449,15 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
 =======
 >>>>>>> 062cdf37816b16856abec6248c0695932a710a69
+=======
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3289256" />
+>>>>>>> 1a62980fb1eb954cb335a441ef6808f22d3266f2
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32637855" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -437,13 +482,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="85" column="14" selection-start-line="85" selection-start-column="14" selection-end-line="85" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kutt/urls.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -652,8 +690,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kutt/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="57" column="24" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
+        <state relative-caret-position="330">
+          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
         </state>
       </provider>
     </entry>
@@ -780,14 +818,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/editprofile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+        <state relative-caret-position="210">
+          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/userchangeform.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
+        <state relative-caret-position="262">
           <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
           <folding>
             <element signature="e#783#801#0" expanded="true" />
@@ -796,6 +834,16 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 >>>>>>> sreeraj
+=======
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 1a62980fb1eb954cb335a441ef6808f22d3266f2
   </component>
 </project>
