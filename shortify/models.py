@@ -27,6 +27,9 @@ class UserPhoneNumber(models.Model):
     user = models.OneToOneField(to = User, on_delete = models.CASCADE)
     phone = models.TextField(max_length=13, blank=False, null=False )
 
+    def __str__(self):
+        return  self.phone
+
 
 
 # on each click a new row wil be added here

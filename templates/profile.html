@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title-section %}
+
+<title>Consultancy Profile Widget Flat Responsive Widget Template</title>
+{% endblock %}
+
+{% block meta-headers %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Consultancy Profile Widget Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+
+
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+{% endblock %}
+
+{% block script-headers %}
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<script src="/static/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/sliding.form.js"></script>
+
+{% endblock %}
+
+{% block css-headers %}
+
+<link href="/static/css/profile_style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/static/css/smoothbox.css" type='text/css' media="all" />
+<link href="//fonts.googleapis.com/css?family=Pathway+Gothic+One" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block body-section %}
+
+	<div class="main">
+		<h1>Profile </h1>
+		<div id="navigation" style="display:none;" class="w3_agile">
+			<ul>
+				<li class="selected">
+					<a href="#"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a>
+				</li>
+
+				<li>
+					<a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span>Saved urls</span></a>
+				</li>
+			</ul>
+		</div>
+		<div id="wrapper" class="w3ls_wrapper w3layouts_wrapper">
+			<div id="steps" style="margin:0 auto;" class="agileits w3_steps">
+				<form id="formElem" name="formElem" action="#" method="post" class="w3_form w3l_form_fancy">
+					<fieldset class="step agileinfo w3ls_fancy_step">
+						<legend>About</legend>
+						<div class="abt-agile">
+							<div class="abt-agile-left">
+							</div>
+							<div class="abt-agile-right">
+								<h3>{{ user.first_name }}  {{ user.last_name }}</h3>
+
+								<ul class="address">
+									<li>
+										<ul class="address-text">
+											<li><b>Username</b></li>
+											<li>: {{ user.username }}</li>
+										</ul>
+									</li>
+									<li>
+										<ul class="address-text">
+											<li><b>E-mail </b></li>
+											<li>: {{ user.email }}</li>
+										</ul>
+									</li>
+									<li>
+										<ul class="address-text">
+											<li><b>Phone</b></li>
+											<li>: {{ phone }}</li>
+										</ul>
+									</li>
+
+
+
+								</ul>
+							</div>
+								<div class="clear"></div>
+						</div>
+					</fieldset>
+
+					<fieldset class="step w3_agileits">
+						<legend>Saved urls</legend>
+							<div class="agilecontactw3ls-grid">
+
+
+								<div class="clear"></div>
+							</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/smoothbox.jquery2.js"></script>
+{% endblock %}

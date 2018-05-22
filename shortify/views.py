@@ -22,7 +22,9 @@ def home(request):
     return render(request,'index.html',{})
 @login_required
 def profile(request):
-    return render(request,'user_profile.html',{})
+    phone = UserPhoneNumber.objects.get(user = request.user)
+    args = {'phone': phone}
+    return render(request,'profile.html',args)
 
 @csrf_exempt
 def short(request):
