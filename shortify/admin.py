@@ -8,6 +8,7 @@ from .models import *
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ("user" , "phone")
 
+
 @admin.register(UserURL)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ("user" , "hash_text" , "url")
