@@ -25,7 +25,7 @@ $('#signup_form').on('submit',function(event){
         email:email,
         phone:phone,
         username:username,
-        password:password
+        password:password,
     })
     .done(function(response){
         // request successfull 

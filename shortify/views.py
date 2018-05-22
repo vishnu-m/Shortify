@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import datetime as dt
 import re
-
+from .forms import UserEditForm
 # Create your views here.
 
 def home(request):
@@ -164,6 +164,38 @@ def validate(request):
 
     return response
 
+@csrf_exempt
+def EditProfile(request):
+
+    if request.method == 'GET':
+        form = UserEditForm()
+        args = {'form': form}
+        return render(request, 'userchangeform.html', args)
+
+
+    if not request.is_ajax():
+        return render(request,'404.html', {})
+
+    form = UserEditForm(request.POST, instance=request.user)
+
+
+    if form.is_valid():
+        email = str(request.POST.get('email'))
+        all_users = User.objects.all()
+        emails = [str(x.email) for x in list(all_users)]
+
+
+
+
+        if email in emails:
+            response = {'status': 404, 'text': 'Email Exists'}
+            return JsonResponse(response)
+        else:
+            form.save()
+            response = {'status': 200, 'text': ''}
+            return JsonResponse(response)
+
+
 
 @csrf_exempt
 def signup(request):
@@ -172,7 +204,7 @@ def signup(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
             return redirect('/')
-        return render(request, 'signup.html', {'value':'True','value2':False})
+        return render(request, 'signup.html', {'value':'True','value2':'False'})
 
     response = validate(request)
     
@@ -354,6 +386,11 @@ def custom_shorten(request):
 def statistics(request):
     
     return render(request, 'stati.html',{})
+
+
+
+
+
 
 
 def show_stati(request):

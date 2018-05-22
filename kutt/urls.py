@@ -34,6 +34,7 @@ urlpatterns = [
     path('validate/',views.validate),
     path('login/',views.login_user, name = 'login'),
     path('logout/',views.logout_user),
+    path('editprofile/' , views.EditProfile),
     path('verify/', views.verify),
     path('custom_shorten/',views.custom_shorten),
     path('statistics/', views.statistics),
