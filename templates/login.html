@@ -35,7 +35,7 @@
                 
                 <div class="content-bottom">
                         <p id="warning_txt" style="text-align:center"></p>
-                    <form action="#" method="post" id="login_form">
+                    <form method="post" id="login_form">
                         {% csrf_token %}
                         <div class="field_w3ls">
                             <div class="field-group">
@@ -61,6 +61,7 @@
         <!--//copyright-->
 
         <!-- script for show password -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
             $(".toggle-password").click(function () {
                 $(this).toggleClass("fa-eye fa-eye-slash");
@@ -72,6 +73,7 @@
                 }
             });
         </script>
+        <script src="/static/js/login.js"></script>
         <!-- /script for show password -->
 
 {% endblock %}
