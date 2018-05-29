@@ -15,15 +15,28 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import datetime as dt
 import re
-from .forms import UserEditForm
+from .forms import UserEditForm , ImageChangeForm
 # Create your views here.
 
 def home(request):
     return render(request,'index.html',{})
 @login_required
 def profile(request):
-    phone = UserPhoneNumber.objects.get(user = request.user)
-    args = {'phone': phone}
+    details = UserPhoneNumber.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = ImageChangeForm(request.POST , request.FILES)
+
+        if form.is_valid():
+            details = UserPhoneNumber.objects.get(user=request.user)
+            details.image = form.cleaned_data['image']
+            details.save()
+            return redirect('/profile')
+        else:
+            return redirect('/statistics')
+    form = ImageChangeForm()
+    args = {'details': details, 'form': form}
+
     return render(request,'profile.html',args)
 
 @csrf_exempt
@@ -180,12 +193,10 @@ def EditProfile(request):
 
     form = UserEditForm(request.POST, instance=request.user)
 
-
     if form.is_valid():
         email = str(request.POST.get('email'))
         all_users = User.objects.all()
         emails = [str(x.email) for x in list(all_users)]
-
 
 
 
@@ -194,9 +205,11 @@ def EditProfile(request):
             return JsonResponse(response)
         else:
             form.save()
+
             response = {'status': 200, 'text': ''}
             return JsonResponse(response)
-
+    else:
+        return render(request , '404.html')
 
 
 @csrf_exempt
@@ -206,7 +219,7 @@ def signup(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
             return redirect('/')
-        return render(request, 'signup.html', {'value':'True','value2':'False'})
+        return render(request, 'signup.html', {'value':True,'value2':False})
 
     response = validate(request)
     
@@ -258,7 +271,7 @@ def login_user(request):
     if  request.method != 'POST':
         if request.user.is_authenticated:
             return redirect('/')
-        return render(request,'login.html',{'value2':'True','value':False})
+        return render(request,'login.html',{'value2':True,'value':False})
 
     username = request.POST.get('username')
     password = request.POST.get('password')

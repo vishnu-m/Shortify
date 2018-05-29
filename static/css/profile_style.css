@@ -40,10 +40,80 @@ h1,h2,h3,h4,h5,h6{
 	font-family: 'Pathway Gothic One', sans-serif;
 	margin:0;
 }
-ul,label{
-	margin:0;
-	padding:0;
+label{
+    color: white;
+    background: #3B5998;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 75%;
+    margin-left: 12%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    float: left;
+    margin-top: 10px;
+    cursor:pointer;
+    transition: .5s ease-in;
+    -webkit-transition: .5s ease-in;
+    -moz-transition: .5s ease-in;
+    -o-transition: .5s ease-in;
+    -ms-transition: .5s ease-in;
 }
+label:hover{
+    color: white;
+    background:  #1DA1F2;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 75%;
+    margin-left: 12%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    float: left;
+    margin-top: 10px;
+    cursor:pointer;
+    letter-spacing:1px;
+}
+#submit{
+
+        color: white;
+    background: #3B5998;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 75%;
+    margin-left: 12%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    text-align: center;
+    float: left;
+    margin-top: 10px;
+    cursor:pointer;
+    border:none;
+
+}
+
+#submit:hover{
+
+        color: white;
+    background:  #1DA1F2;
+    letter-spacing:1px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 75%;
+    margin-left: 12%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    text-align: center;
+    float: left;
+    margin-top: 10px;
+    cursor:pointer;
+    border:none;
+
+}
+input[type=file]{
+
+display:none;}
+
 body a:hover,body a{
 	text-decoration:none;
 }
@@ -95,7 +165,7 @@ input[type="submit"],.agileits_copyright p a,input[type="reset"]{
 }
 #steps{
     width:670px;
-	/*height:320px;*/
+	/*height:auto; */
     overflow:hidden;
 	background: rgba(76, 72, 72, 0.47);
 }
@@ -120,8 +190,8 @@ input[type="submit"],.agileits_copyright p a,input[type="reset"]{
 #navigation ul li a{
     display:block;
     height:45px;
-    background-color:#444;
-    color:#777;
+    background-color:#3B5998;
+    color:#fff;
     outline:none;
 	font-size: 1em;
     font-weight:bold;
@@ -138,7 +208,7 @@ input[type="submit"],.agileits_copyright p a,input[type="reset"]{
 	content: '';
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #00e8ff;
+    border-top: 10px solid #3B5998;
     position: absolute;
     top: -27%;
     left: 40%;
@@ -153,8 +223,8 @@ input[type="submit"],.agileits_copyright p a,input[type="reset"]{
     left: 14%;
     padding: .3em ; 
     padding-left: 5px;
-    background: #00e8ff;
-    color: #f00;
+    background: #3B5998;
+    color: #fff;
     width:90px;
     height: 25px;
     line-height: 20px;
@@ -171,12 +241,12 @@ input[type="submit"],.agileits_copyright p a,input[type="reset"]{
 }
 #steps form legend {
     text-align: center;
-    color: #00e8ff;
+    color: #1DA1F2;
     font-size: 34px;
     font-weight: 600;
     text-transform: uppercase;
     width: 670px;
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0px 5px 0px;
     margin: 0;
 }
 .abt-agile-right h3 {
@@ -193,8 +263,9 @@ input[type="submit"],.agileits_copyright p a,input[type="reset"]{
 }
 .abt-agile-right {
     float: right;
-    width: 58%;
+    width: 50%;
     text-align: left;
+    margin-top: 60px;
 }
 .abt-agile {
     padding: 20px;
@@ -210,10 +281,103 @@ p.step_w3layouts {
 	font-size:30px;
 }
 .abt-agile-left {
-    background: url(../images/img_avatar2.png) no-repeat 1px 0px;
     background-size: cover;
-    border-radius: 50%;
+
     min-height: 200px;
+    width: 40%;
+    float: left;
+    margin-top:0px;
+}
+.abt-agile-left img{
+    background-size: cover;
+    border-radius: 10%;
+    min-height: 150px;
+    max-height:220px;
+    min-width:150px;
+    max-width:220px;
+    width: 100%;
+
+}
+
+.id_image input{
+    margin-top: 10px;
+    width: 100px;
+    opacity:0;
+    cursor:pointer;
+    margin-left:0;
+    float:left;
+
+ }
+
+.abt-agile-left-image input[type="submit"]{
+   float: left;
+   position:relative;
+      top:20px;
+   width:auto;
+   border: 15px;
+   font-size: 15px;
+   margin-top: 15px;
+}
+.abt-agile-left-image input[type ="file"]{
+   float: left;
+
+   position:relative;
+      top:55px;
+
+   font-size: 15px;
+   margin-top: 20px;
+}
+
+.fileUpload {
+	position: relative;
+	    top: 20px;
+	overflow: hidden;
+
+	margin-bottom: 20px;
+
+	width: 70px;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0px;
+	right: 0;
+	margin: 0;
+	padding: 0;
+    float:left;
+	font-color: #000;
+	cursor: pointer;
+
+}
+#id_button{
+
+   margin-top: 20px;
+   width: 80px;
+	font-size: 15px;
+
+
+
+}
+
+#label{
+   color: #fff;
+   background-color: #f00;
+   height: 40px;
+   padding-top: 0px;
+   width:20px;
+  }
+.abt-agile-left-image {
+
+    margin-top:5px;
+    margin-bottom: 30px;
+    width: 40%;
+    float: left;
+    }
+.form-image{
+    position:relative;
+        top:210px;
+        right :200px;
+    margin-top:5px;
+    margin-bottom: 30px;
     width: 33%;
     float: left;
 }
@@ -479,8 +643,8 @@ ul.address li ul.address-text li {
 }
 .abt-agile-right {
     width: 100%;
-    float: none;
-    margin-top: 20px;
+    float: left;
+    margin-top: 100px;
 }
 .abt-agile-right h3 {
     text-align: center;
@@ -518,16 +682,20 @@ ul.address li ul.address-text li {
 		width: 370px;
 	}
 	#steps form p {
-		width: 310px;
+		width: 100%;
 	}
 	#steps form p label {
-		width: 100%;
-		float: none;
-		text-align: center;
-		margin-right: 0;
+	width: 100%;
+    float: left;
+    margin-left: 0px;
+    text-align: center;
 	}
 	#steps form fieldset {
 		padding-bottom: 0;
+	}
+	#submit{
+	   width:100%;
+	   margin-left:0px;
 	}
 	#navigation ul li a {
 		padding: 0px 19.9px;
@@ -546,10 +714,10 @@ ul.address li ul.address-text li {
     padding: 20px 0px 0px 0px;
 }
 .abt-agile-left {
-    width: 55%;
+    width: 75%;
 }
 #steps {
-    height: 620px;
+    height: 700px;
 }
 .agilecontactw3ls-grid input[type="text"], .agilecontactw3ls-grid input[type="email"], .agilecontactw3ls-grid textarea {
     width: 92%;
@@ -560,10 +728,18 @@ ul.address li ul.address-text li {
 		width: 315px;
 	}
 	#steps form p {
-		width: 255px;
+		width: 100%;
 	}
 	#steps form p label {
-		font-size: 14px;
+		font-size: 16px;
+    width: 100%%;
+    float: left;
+    text-align: center;
+
+	}
+	#submit{
+	margin-left:0px;
+	width:100%;
 	}
 	#navigation ul li a img {
 		width: 65%;
@@ -603,8 +779,8 @@ ul.address li ul.address-text li:nth-child(1) {
 		width: 290px;
 	}
 	#steps form p {
-		width: 249px;
-		margin-left: 10px;
+		width: 100%;
+		margin-left: 0px;
 	}
 	#navigation ul li a {
 		padding: 0px 12px;

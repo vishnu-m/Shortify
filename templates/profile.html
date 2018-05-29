@@ -18,16 +18,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 {% block script-headers %}
 
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script>
+		function image(){
 
-<script src="/static/js/jquery-2.1.3.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="/static/js/sliding.form.js"></script>
+        $('input[type="file"]').change(function(e){
+
+            var fileName = e.target.files[0].name;
+
+       document.getElementById("label_image").innerHTML= fileName;
+        document.getElementById("label_image").style.fontSize = "15px";
+         document.getElementById("label_image").style.fontWeight = "500";
+
+
+
+        });
+		}
+	</script>
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script type="text/javascript" src="js/smoothbox.jquery2.js"></script>
+
+    <script src="/static/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/sliding.form.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 {% endblock %}
 
 {% block css-headers %}
-
 <link href="/static/css/profile_style.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
 <link rel="stylesheet" href="/static/css/smoothbox.css" type='text/css' media="all" />
@@ -44,20 +63,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="selected">
 					<a href="#"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a>
 				</li>
-
-				<li>
-					<a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span>Saved urls</span></a>
+				<li class="selected">
+					<a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Statistics</span></a>
 				</li>
+
+
 			</ul>
 		</div>
 		<div id="wrapper" class="w3ls_wrapper w3layouts_wrapper">
 			<div id="steps" style="margin:0 auto;" class="agileits w3_steps">
-				<form id="formElem" name="formElem" action="#" method="post" class="w3_form w3l_form_fancy">
+				<form id="formElem" name="formElem"  method="post" class="w3_form w3l_form_fancy" enctype="multipart/form-data">
+
+					{% csrf_token %}
 					<fieldset class="step agileinfo w3ls_fancy_step">
-						<legend>About</legend>
+						<legend>about</legend>
 						<div class="abt-agile">
-							<div class="abt-agile-left">
-							</div>
+
+
+							      <div class="abt-agile-left">
+
+									  {% if details.image.url is not None %}
+
+
+
+										<img src="{{ details.image.url }}" alt=" {{ details.image.name }}">
+                                        <p>
+										    <label for="id_image" id="label_image" onclick="image()">Browse</label>
+                                            <input name="image" id="id_image" required="" type="file" >
+                                        </p>
+									  <input type="submit" value="Change Avatar" id="submit"> <br>
+
+									  {% else %}
+									    <img src="/static/images/img_avatar2.png">
+                                      <p>
+										    <label for="id_image" id="label_image" onclick="image()">Browse</label>
+                                            <input name="image" id="id_image" required="" type="file" >
+                                        </p>
+									  <input type="submit" value="Change Avatar" id="submit"> <br>
+
+								{% endif %}
+
+								  </div>
+
 							<div class="abt-agile-right">
 								<h3>{{ user.first_name }}  {{ user.last_name }}</h3>
 
@@ -77,30 +124,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li>
 										<ul class="address-text">
 											<li><b>Phone</b></li>
-											<li>: {{ phone }}</li>
+											<li>: {{ details.phone }}</li>
 										</ul>
 									</li>
 
 
 
 								</ul>
+
 							</div>
 								<div class="clear"></div>
 						</div>
 					</fieldset>
 
-					<fieldset class="step w3_agileits">
-						<legend>Saved urls</legend>
-							<div class="agilecontactw3ls-grid">
+					<fieldset class="step agileinfo w3ls_fancy_step">
 
-
-								<div class="clear"></div>
-							</div>
+						<legend>Statistics</legend>
 					</fieldset>
+
+
 				</form>
 			</div>
 		</div>
 
 	</div>
-	<script type="text/javascript" src="js/smoothbox.jquery2.js"></script>
+
 {% endblock %}

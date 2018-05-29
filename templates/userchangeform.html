@@ -10,20 +10,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/signin.css" type="text/css">
 
+
 {% endblock %}
 
 {% block script-headers %}
+
 {% endblock %}
 
 {% block title-section %}
-    <title>Create Account</title>
+    <title>Edit Profile</title>
 {% endblock %}
 
 {% block body-section %}
 
-<h2 align="center" style="color:#fff">Create Account</h2>
+<h2 align="center" style="color:#fff">Edit Profile</h2>
 <div class="signup-form">	
-        <form method="post" style="border-radius:1vh" id="edit_profile" action="profile/">
+        <form method="post" style="border-radius:1vh" id="edit_profile"  >
             <p class="lead" id="warning_txt">It's free and hardly takes more than 30 seconds.</p>
 
             {% csrf_token %}
@@ -44,9 +46,10 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                    <input type="email" class="form-control" name="email" placeholder="Email Address" required="required" id="email">
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" id="email" required="required">
                 </div>
             </div>
+
 
 
 
@@ -56,10 +59,12 @@
         </form>
     </div>
 
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/static/js/editprofile.js"></script>
+
+
+
+
 {% endblock %}
 

@@ -26,7 +26,7 @@ class UserURL(models.Model):
 class UserPhoneNumber(models.Model):
     user = models.OneToOneField(to = User, on_delete = models.CASCADE)
     phone = models.TextField(max_length=13, blank=False, null=False )
-
+    image = models.ImageField(upload_to='pictures/' , blank=True )
     def __str__(self):
         return  self.phone
 

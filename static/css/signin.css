@@ -1,3 +1,5 @@
+
+
 body {
 	color: #aaa;
 	background: url(../images/banner-signin.jpg);
@@ -57,6 +59,14 @@ body {
 	border: none;
 	min-width: 140px;
 	outline: none !important;
+}
+
+nav li, nav ul, nav{
+
+
+       font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 .signup-form .btn:hover, .signup-form .btn:focus {
 	background: #179b81;
