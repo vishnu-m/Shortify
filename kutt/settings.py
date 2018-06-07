@@ -23,9 +23,6 @@ DB_USER = 'root'
 DB_PASS = 'root'
 URL_HASH_SIZE = 8
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'sreerajavk'
-EMAIL_HOST_PASSWORD = 'sreeraj1997'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
