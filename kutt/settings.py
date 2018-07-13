@@ -45,6 +45,8 @@ CURRRENT_HOST = None
 
 if PRODUCTION_MODE:
     DB_HOST = 'srv-captain--mysql'
+    DB_USER = 'root'
+    DB_PASS = 'foss_2255'
     CURRRENT_HOST = PRODUCTION_HOST
     ALLOWED_HOSTS = [PRODUCTION_HOST]
 else:
