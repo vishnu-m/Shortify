@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -38,7 +39,7 @@ SECRET_KEY = 'k+e(-c(o(vl^^t*_siup0_p+s9jk4z4-t+1-+0tg12*kp%55&^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-PRODUCTION_MODE = True
+PRODUCTION_MODE = False
 
 
 CURRRENT_HOST = None
@@ -51,8 +52,9 @@ if PRODUCTION_MODE:
     ALLOWED_HOSTS = [PRODUCTION_HOST]
 else:
     CURRRENT_HOST = '127.0.0.1'
-    DB_USER = 'django'
-    DB_HOST = CURRRENT_HOST
+    DB_USER = 'kutt'
+    DB_PASS = 'kutt'
+    DB_HOST = '127.0.0.1'
     ALLOWED_HOSTS = [CURRRENT_HOST]
 
 
@@ -113,7 +115,8 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE' : 'django.db.backends.postgresql',
         'NAME': 'new_db',
         'USER': DB_USER,
         'PASSWORD': DB_PASS,
@@ -121,7 +124,6 @@ DATABASES = {
         'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
