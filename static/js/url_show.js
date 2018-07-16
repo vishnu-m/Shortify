@@ -24,7 +24,8 @@ $('#shorten').on('submit',function(event){
 
 
 function show_url(response){
-    $('#url_show').html('<a href="' + response + '" target="_blank">' + response + '</a>');
+    var host = window.get_hostname();
+    $('#url_show').html('<a href="' + host + response + '" target="_blank">' + host + response + '</a>');
     $("#url_show").css('display','block');
 }
 

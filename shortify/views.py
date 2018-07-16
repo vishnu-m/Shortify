@@ -19,6 +19,7 @@ from .forms import UserEditForm
 # Create your views here.
 
 def home(request):
+    print( str(request.build_absolute_uri() ) )
     return render(request,'index.html',{})
 @login_required
 def profile(request):
@@ -49,14 +50,14 @@ def short(request):
             row = UserURL.objects.get(url=url)
             if row.user.username == user.username:
                 hash_text = row.hash_text
-                short_url = 'http://' + host + "/" + hash_text
-                return HttpResponse(short_url)
+                # short_url = 'http://' + host + "/" + hash_text
+                return HttpResponse( hash_text )
     else:
         is_existing = AnonymousURL.objects.filter(url=url).exists()
         if is_existing:
             hash_text = AnonymousURL.objects.get(url=url).hash_text
             short_url = 'http://' + host + "/" + hash_text
-            return HttpResponse(short_url)
+            return HttpResponse( hash_text )
         
     
         
