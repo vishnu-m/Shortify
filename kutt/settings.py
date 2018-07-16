@@ -55,8 +55,6 @@ else:
     ALLOWED_HOSTS = [CURRRENT_HOST]
 
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
