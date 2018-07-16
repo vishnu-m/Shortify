@@ -79,7 +79,7 @@ def short(request):
         u = UserURL.objects.create(url = url, user = user, hash_text = hash_text, page_title = title, page_desc = desc, page_icon_url = icon_url, date_added = datetime.now())
     
     if u:
-        return HttpResponse(short_url)
+        return HttpResponse( hash_text )
     else:
         return Http404("Something went wrong")   
 
