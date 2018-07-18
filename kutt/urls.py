@@ -22,6 +22,8 @@ from django.urls import path
 from django.conf.urls import url
 from django.urls import path, re_path
 from django.conf.urls.static import static
+from django.conf.urls import url, include
+
 from kutt import settings
 from shortify import views
 
@@ -32,8 +34,8 @@ urlpatterns = [
     path('short/',views.short),
     path('signup/',views.signup),
     path('validate/',views.validate),
-    path('login/',views.login_user, name = 'login'),
-    path('logout/',views.logout_user),
+    path('login/',views.login_page, name = 'login'),
+    path('logout/',logout, name = 'logout' ),
     path('editprofile/' , views.EditProfile),
     path('verify/', views.verify),
     path('custom_shorten/',views.custom_shorten),
@@ -46,6 +48,9 @@ urlpatterns = [
      password_reset_confirm ,{'template_name':'password_reset_confirm.html'}, name = 'password_reset_confirm'),
 
     path('reset-password/complete', password_reset_complete ,{'template_name':'password_reset_complete.html'} ,name = 'password_reset_complete'),
+
+    url(r'^auth/', include('social_django.urls', namespace='social')),
+
 
     # keep this section in the bottom in order to prevent overriding the shortened URL and pre defined URL
     re_path(r'^.*/$',views.get_url),    # shortened url matching

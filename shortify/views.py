@@ -21,6 +21,7 @@ from .forms import UserEditForm
 def home(request):
     print( str(request.build_absolute_uri() ) )
     return render(request,'index.html',{})
+
 @login_required
 def profile(request):
     return render(request,'user_profile.html',{})
@@ -91,28 +92,27 @@ def get_url(request):
     
     # removing the slashes
     path = path[1:-1]
-
-    user = request.user
-    # get the url corresponding to the hash
-    if user.is_authenticated:
-        row = UserURL.objects.filter(hash_text= path, user = user)
-        if row.exists():
-            row = UserURL.objects.get(hash_text= path, user = user)
-            click = UserURLStatistics.objects.create(user = user, url = row, date_clicked = datetime.now())
-
-            row.no_of_clicks += 1
-            row.save()
-            url = row.url
-            if url.startswith('http://') or url.startswith('https://'):
-                return redirect(url)
-            else:
-                return redirect('http://' + url)
-    else:
-        row = AnonymousURL.objects.filter(hash_text= path)
-        if row.exists():
-            return redirect(row[0].url)       
     
-    return render(request,'404.html',{})
+    # determine whether it is in UserURL or AnonymousURL
+    urls = UserURL.objects.filter( hash_text = path )
+    if urls.exists():
+        url = urls[0]
+
+        # update the statistics
+        u = UserURLStatistics.objects.create( user = url.user , url = url )
+        url.no_of_clicks += 1
+        url.save()
+        
+        return redirect( url.url )
+    
+    urls = AnonymousURL.objects.filter( hash_text = path )
+    if urls.exists():
+        url = urls[0]
+        return redirect( url.url )
+    
+    return render( request, '404.html', {} )
+
+
 
 def generate_hash():
     p = string.ascii_letters + string.digits + '_'
@@ -247,38 +247,20 @@ def signup(request):
         response = {'status': 404, 'text':'Something went wrong'}
         return JsonResponse(response)
 
+def login_page( request ):
+    if request.user.is_authenticated:
+        return redirect('/')
+
+    return render( request, 'login.html', {} )
 
 
-@csrf_exempt
-def login_user(request):
-    if request.user_agent.os.family == 'Android':
-        pass
-    
-    if  request.method != 'POST':
-        if request.user.is_authenticated:
-            return redirect('/')
-        return render(request,'login.html',{'value2':'True','value':False})
+def login_google(request):
+    logout( request )
+    return redirect("/auth/login/google-oauth2/")
 
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-
-    status = '' 
-    text = ''
-
-    u = authenticate(username = username, password = password)
-    
-    if u:
-        # authentication success
-        login(request, u)
-        
-        status = '200'
-        text = 'You have successfully logged in'
-    else:
-        status = '404'
-        text = 'Username or password incorrect'
-    
-    response = {'status':status, 'text': text}
-    return JsonResponse(response)
+def login_fb( request ):
+    logout( request )
+    return redirect("/auth/login/google-oauth2/")
 
     
 def logout_user(request):

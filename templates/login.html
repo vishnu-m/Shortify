@@ -35,25 +35,11 @@
                 
                 <div class="content-bottom">
                         <p id="warning_txt" style="text-align:center"></p>
-                    <form method="post" id="login_form">
-                        {% csrf_token %}
-                        <div class="field_w3ls">
-                            <div class="field-group">
-                                <input name="username" id="username" type="text" value="" placeholder="Username" required>
-                            </div>
-                            <div class="field-group">
-                                <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
-                                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                            </div>
-                        </div>
-                        <div class="wthree-field">
-                            <input id="saveForm" name="saveForm" type="submit" value="Login" />
-                        </div>
-                        <br>    
-                        
-                    </form>
 
-                    <a href="{% url 'reset-password' %}" style="text-align:center; color:#fff">forgot password?</a>
+
+                        <a href="/auth/login/google-oauth2/">Sign in with Google</a>
+                        <a href="{% url 'social:begin' 'facebook' %}">Sign in with Facebook</a>
+                        <a href="{% url 'social:begin' 'github' %}">Sign in with GitHub</a>
                 </div>
                 <!-- //content bottom -->
             </div>

@@ -3,6 +3,16 @@ from django.contrib.auth.models import User
 from datetime import datetime
 # Create your models here.
 
+def get_user_fullname( self ):
+    full_name = self.first_name + ' ' + self.last_name
+    if full_name.strip() == '':
+        full_name = self.username
+    return full_name
+
+User.add_to_class( "__str__", get_user_fullname)
+
+
+
 class AnonymousURL(models.Model):
     url = models.TextField(max_length=10000,blank=False, null=False)
     hash_text = models.TextField(max_length=8, blank=False, null=False)
@@ -21,6 +31,8 @@ class UserURL(models.Model):
     page_icon_url = models.TextField(default='',max_length=10000, blank=False, null=False)
     date_added = models.DateTimeField()
 
+    def __str__( self ):
+        return str( self.user ) + ' ' + str( self.url )
 
 
 class UserPhoneNumber(models.Model):
@@ -33,7 +45,7 @@ class UserPhoneNumber(models.Model):
 class UserURLStatistics(models.Model):
     user = models.ForeignKey(to = User, on_delete = models.CASCADE)
     url = models.ForeignKey(to = UserURL, on_delete = models.CASCADE);
-    date_clicked= models.DateTimeField()
+    date_clicked= models.DateTimeField( auto_now_add = True )
 
 
     class Meta:

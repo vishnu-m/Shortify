@@ -55,7 +55,7 @@ else:
     ALLOWED_HOSTS = [CURRRENT_HOST]
 
 
-ALLOWED_HOSTS = [ '127.0.0.1', '0.0.0.0', 'localhost' ]
+ALLOWED_HOSTS = [ '127.0.0.1', '0.0.0.0', 'localhost', 'xenial.xyz' ]
 
 # Application definition
 
@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_user_agents',
-
+    'social_django',
     'shortify',
 ]
 
@@ -80,6 +80,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'kutt.urls'
@@ -95,6 +98,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -164,3 +170,45 @@ STATIC_ROOT = '/static/'
 STATICFILES_DIRS = [
     'static',
 ]
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '332606479611-7tsa26qspvgbuk2cp51m6i4o9iu3o0rq.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '3B2kwll5-L6bE0UY_uNmLpqF'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '2118223078454365'
+SOCIAL_AUTH_FACEBOOK_SECRET = '4ba79545d294e1c7ac866fdd5b72b7d6'
+
+SOCIAL_AUTH_GITHUB_KEY = '505bb0c675d4e8db67a5'
+SOCIAL_AUTH_GITHUB_SECRET = 'ed381761bf131d00cddfb5b87452d39b4efaf2b5'
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'social_core.backends.github.GithubOAuth2',
+
+
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+)
+
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/'
