@@ -55,7 +55,7 @@ else:
     ALLOWED_HOSTS = [CURRRENT_HOST]
 
 
-ALLOWED_HOSTS = [ '127.0.0.1', '0.0.0.0', 'localhost', 'xenial.xyz' ]
+ALLOWED_HOSTS = [ '127.0.0.1', '0.0.0.0', 'localhost', 'xenial.xyz', 'kutt.fossgect.club' ]
 
 # Application definition
 
