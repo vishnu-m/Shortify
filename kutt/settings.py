@@ -55,7 +55,7 @@ else:
     ALLOWED_HOSTS = [CURRRENT_HOST]
 
 
-ALLOWED_HOSTS = [ '127.0.0.1', '0.0.0.0', 'localhost', 'xenial.xyz', 'kutt.fossgect.club' ]
+ALLOWED_HOSTS = [ '127.0.0.1', '0.0.0.0', 'localhost', 'xenial.xyz', 'kutt.fossgect.club', 'short.com' ]
 
 # Application definition
 
@@ -211,4 +211,4 @@ SOCIAL_AUTH_PIPELINE = (
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = 'home'

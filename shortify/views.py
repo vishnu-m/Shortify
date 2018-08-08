@@ -16,20 +16,56 @@ from datetime import datetime
 import datetime as dt
 import re
 from .forms import UserEditForm
+
+
+
+from importlib import import_module
+from django.conf import settings
+from django.contrib.auth import get_user
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth import SESSION_KEY, BACKEND_SESSION_KEY, load_backend
 # Create your views here.
 
 def home(request):
-    print( str(request.build_absolute_uri() ) )
+    print ( dir(request.session ))
+    print (request.session.session_key)
+
+    if not request.user_agent.is_pc:
+        user = request.user
+    else:
+        # get the token passed via POST
+
+        token = request.POST.get('token')
+
+        engine = import_module( settings.SESSION_ENGINE )
+        session = engine.SessionStore( token )
+        try:
+            user_id = session[ SESSION_KEY ]
+            backend_path = session[ BACKEND_SESSION_KEY ]
+            backend = load_backend( backend_path )
+            user = backend.get_user( user_id ) or AnonymousUser()
+        except KeyError:
+            user = AnonymousUser()
+
+        print ( user )
+        if user.is_authenticated:
+            print ("user")
+        else:
+            print ("anon")
+
     return render(request,'index.html',{})
 
 @login_required
 def profile(request):
     return render(request,'user_profile.html',{})
 
+
+
 @csrf_exempt
 def short(request):
     uri = str(request.build_absolute_uri())
     host = uri.split('/')[2]
+
     
     if request.method != 'POST':
         return HttpResponse('not found')
@@ -41,7 +77,28 @@ def short(request):
     #     url = 'http://' + url
 
     # get the user
-    user = request.user
+    if not request.user_agent.is_pc:
+        user = request.user
+    else:
+        # get the token passed via POST
+
+        token = request.POST.get('token')
+
+        engine = import_module( settings.SESSION_ENGINE )
+        session = engine.SessionStore( token )
+        try:
+            user_id = session[ SESSION_KEY ]
+            backend_path = session[ BACKEND_SESSION_KEY ]
+            backend = load_backend( backend_path )
+            user = backend.get_user( user_id ) or AnonymousUser()
+        except KeyError:
+            user = AnonymousUser()
+
+        if user.is_authenticated:
+            print ("user")
+        else:
+            print ("anon")
+
 
     # check whether the url already added 
     if request.user.is_authenticated:
@@ -394,7 +451,7 @@ def show_stati(request):
     
     # get all urls from UserURLs
     all_urls = UserURL.objects.filter(user = user).order_by('-date_added')
-    
+    print( UserURL.objects.all()[0].date_added )
     
     data = []
     urls = {}
