@@ -22,5 +22,5 @@ six==1.11.0
 social-auth-app-django==2.1.0
 social-auth-core==1.7.0
 ua-parser==0.8.0
-urllib3==1.22
+urllib3==1.26.5
 user-agents==1.1.0
